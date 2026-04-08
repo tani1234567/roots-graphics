@@ -14,8 +14,11 @@ const navLinks = [
 ];
 
 export default function Navbar() {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen]   = useState(false);
+  const [scrolled, setScrolled]   = useState(false);
   const pathname = usePathname();
+  const isHome   = pathname === '/';
+
   const isActiveRoute = (href: string) => {
     if (href === '/') return pathname === '/';
     return pathname === href || pathname.startsWith(`${href}/`);
@@ -25,13 +28,28 @@ export default function Navbar() {
     setMenuOpen(false);
   }, [pathname]);
 
+  // Track scroll position to toggle header transparency
+  useEffect(() => {
+    const handler = () => setScrolled(window.scrollY > 55);
+    handler(); // set initial value
+    window.addEventListener('scroll', handler, { passive: true });
+    return () => window.removeEventListener('scroll', handler);
+  }, []);
+
+  // Transparent only on the home page when at the very top
+  const isTransparent = isHome && !scrolled;
+
   return (
     <>
       <motion.nav
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: 'easeOut' }}
-        className="fixed top-0 left-0 right-0 z-50 w-full bg-brand-cream/95 backdrop-blur-sm border-b border-[#dbcdb6] px-4 sm:px-6 md:px-12 py-2 md:py-3 flex items-center justify-between gap-4"
+        className={`fixed top-0 left-0 right-0 z-50 w-full px-4 sm:px-6 md:px-12 py-2 md:py-3 flex items-center justify-between gap-4 transition-all duration-500 ease-in-out ${
+          isTransparent
+            ? 'bg-brand-cream/50 border-b border-[#dbcdb6]/50 backdrop-blur-sm'
+            : 'bg-brand-cream/95 backdrop-blur-sm border-b border-[#dbcdb6]'
+        }`}
       >
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 min-w-0 pr-2">
