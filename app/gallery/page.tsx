@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { paintings } from '@/data/paintings';
 
@@ -10,6 +11,70 @@ import { paintings } from '@/data/paintings';
 type Painting = (typeof paintings)[number];
 
 const FILTERS = ['All Works', 'M. B. Parag', 'Jayant B. Mairal'] as const;
+
+type Orientation = 'landscape' | 'portrait' | 'square' | 'unknown';
+
+function getPaintingImageSrc(title: string): string | null {
+  if (title === 'Narsimha God with Celebrations of Victory') return '/photos/Narsimha_God.png';
+  if (title === 'Couple') return '/photos/Couple.png';
+  if (title === 'Unity') return '/photos/Unity.png';
+  if (title === 'Different Forms & Faces of Lord Ganesha') return '/photos/Different_Forms_&_Faces_of_Lord_Ganesha.png';
+  if (title === 'Nest : House of Love') return '/photos/House_of_Love.png';
+  if (title === 'Green Forest') return '/photos/Green_Forest.png';
+  if (title === "Sensation with Sensitivity I - Winner's of Battle I") return "/photos/Winner's_of_Battle_I.png";
+  if (title === "Sensation with Sensitivity II- Winner's of Battle II") return "/photos/Winner's_of_Battle_II.png";
+  if (title === "Sensation with Sensitivity III - Winner's of Battle III") return "/photos/Winner's_of_Battle_III.png";
+  if (title === 'Softness of Piousity and Purity Forming Almighty God I.') return '/photos/Almighty_God_I.png';
+  if (title === 'Germination') return '/photos/Germination.png';
+  if (title === 'Prosperity with Peace') return '/photos/Prosperity_with_Peace.png';
+  if (title === 'Prosperity with Landmarks & Achievements.') return '/photos/Prosperity_with_Peace.png';
+  if (title === 'Man : Creater on Universe : Mohammad Ali Boxer.') return '/photos/Mohammad_Ali_Boxer.png';
+  if (title === 'Softness of Piousity and Purity Forming Almighty God Ganesha in the Centre.') return '/photos/Almighty_God_Ganesha.png';
+  if (title === 'King of Forest - Jungle.') return '/photos/King_of_Forest.png';
+  if (title === 'Dense Forest with Shadow of Diety.') return '/photos/Dense_Forest.png';
+  if (title === 'Winning Horse With the Owner') return '/photos/Winning_Horse.png';
+  if (title === 'Monkeys in the Jungle - Forest') return '/photos/Monkeys_in_the_Jungle.png';
+  if (title === "Rhinoceros Winner's of the Battle.") return '/photos/Rhinoceros.png';
+  if (title === 'Celebrations in Dense Forest.') return '/photos/Celebrations_in_Dense_Forest.png';
+  if (title === "King's Kingdom") return "/photos/King's_Kingdom.png";
+  if (title === 'Clouds & Rains & Happiness & Celebrations') return '/photos/Clouds_&_Rains.png';
+  if (title === 'Blossoming Forest') return '/photos/Blossoming_Forest.png';
+  return null;
+}
+
+function useImageOrientation(src: string | null): Orientation {
+  const [orientation, setOrientation] = useState<Orientation>('unknown');
+
+  useEffect(() => {
+    if (!src) {
+      setOrientation('unknown');
+      return;
+    }
+
+    let cancelled = false;
+    const img = new window.Image();
+
+    img.onload = () => {
+      if (cancelled) return;
+      const { naturalWidth, naturalHeight } = img;
+      if (naturalWidth > naturalHeight) setOrientation('landscape');
+      else if (naturalHeight > naturalWidth) setOrientation('portrait');
+      else setOrientation('square');
+    };
+
+    img.onerror = () => {
+      if (!cancelled) setOrientation('unknown');
+    };
+
+    img.src = src;
+
+    return () => {
+      cancelled = true;
+    };
+  }, [src]);
+
+  return orientation;
+}
 
 // ── Variants ───────────────────────────────────────────────────────────────
 
@@ -34,6 +99,18 @@ function PaintingCard({
   index: number;
   onClick: () => void;
 }) {
+  const imageSrc = getPaintingImageSrc(painting.title);
+  const orientation = useImageOrientation(imageSrc);
+  const frameAspectClass = imageSrc
+    ? orientation === 'portrait'
+      ? 'aspect-[4/5]'
+      : orientation === 'square'
+        ? 'aspect-square'
+        : 'aspect-[4/3]'
+    : index % 2 === 0
+      ? 'aspect-[4/3]'
+      : 'aspect-[4/5]';
+
   return (
     <motion.div
       variants={cardItem}
@@ -44,20 +121,30 @@ function PaintingCard({
     >
       {/* Frame placeholder — alternating aspect ratio for masonry feel */}
       <div
-        className={`w-full ${index % 2 === 0 ? 'aspect-[4/3]' : 'aspect-[4/5]'} flex items-center justify-center`}
+        className={`w-full ${frameAspectClass} flex items-center justify-center`}
         style={{
-          background: '#111',
+          background: imageSrc ? '#FFFFFF' : '#111',
           border: '3px solid #C9A84C',
           boxShadow:
             'inset 0 0 0 8px rgba(201,168,76,0.06), inset 0 0 20px rgba(0,0,0,0.5)',
         }}
       >
-        <span
-          className="font-display italic text-brand-gold text-lg text-center px-6"
-          style={{ opacity: 0.3 }}
-        >
-          {painting.title}
-        </span>
+        {imageSrc ? (
+          <Image
+            src={imageSrc}
+            alt={painting.title}
+            width={1200}
+            height={900}
+            className="w-full h-full object-contain"
+          />
+        ) : (
+          <span
+            className="font-display italic text-brand-gold text-lg text-center px-6"
+            style={{ opacity: 0.3 }}
+          >
+            {painting.title}
+          </span>
+        )}
       </div>
 
       {/* Info */}
@@ -85,16 +172,28 @@ function PaintingCard({
 export default function GalleryPage() {
   const [filter, setFilter] = useState<string>('All Works');
   const [lightboxId, setLightboxId] = useState<number | null>(null);
+  const normalizeArtist = (value: string) => value.toLowerCase().replace(/[.\s]/g, '');
+  const matchesFilter = (artist: string, selected: string) => {
+    return normalizeArtist(artist) === normalizeArtist(selected);
+  };
 
   const filtered =
     filter === 'All Works'
       ? paintings
-      : paintings.filter((p) => p.artist === filter);
+      : paintings.filter((p) => matchesFilter(p.artist, filter));
 
   const lightboxIndex =
     lightboxId !== null ? filtered.findIndex((p) => p.id === lightboxId) : -1;
 
   const lightboxPainting = lightboxIndex !== -1 ? filtered[lightboxIndex] : null;
+  const lightboxImageSrc = lightboxPainting ? getPaintingImageSrc(lightboxPainting.title) : null;
+  const lightboxOrientation = useImageOrientation(lightboxImageSrc);
+  const lightboxAspectClass =
+    lightboxOrientation === 'portrait'
+      ? 'aspect-[4/5]'
+      : lightboxOrientation === 'square'
+        ? 'aspect-square'
+        : 'aspect-[4/3]';
 
   const goNext = () => {
     if (lightboxIndex !== -1) {
@@ -119,7 +218,7 @@ export default function GalleryPage() {
       {/* ═══════════════════════════════════════════════════════
           PAGE HEADER
       ══════════════════════════════════════════════════════════ */}
-      <section className="bg-[#f4ede2] min-h-[40vh] flex items-end pb-14 pt-32 px-6 md:px-12">
+      <section className="bg-[#102A1F] min-h-[40vh] flex items-end pb-14 pt-32 px-6 md:px-12">
         <div className="max-w-7xl mx-auto w-full">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -266,21 +365,31 @@ export default function GalleryPage() {
             >
               {/* Frame placeholder */}
               <div
-                className="w-full aspect-[4/3] flex items-center justify-center"
+                className={`w-full ${lightboxAspectClass} flex items-center justify-center`}
                 style={{
                   maxWidth: '70vw',
-                  background: '#111',
+                  background: lightboxImageSrc ? '#FFFFFF' : '#111',
                   border: '4px solid #C9A84C',
                   boxShadow:
                     'inset 0 0 0 3px #0D0D0D, inset 0 0 0 6px rgba(201,168,76,0.18), 0 0 60px rgba(201,168,76,0.08)',
                 }}
               >
-                <span
-                  className="font-display text-2xl italic text-brand-gold text-center px-8"
-                  style={{ opacity: 0.3 }}
-                >
-                  {lightboxPainting.title}
-                </span>
+                {lightboxImageSrc ? (
+                  <Image
+                    src={lightboxImageSrc}
+                    alt={lightboxPainting.title}
+                    width={1400}
+                    height={1050}
+                    className="w-full h-full object-contain"
+                  />
+                ) : (
+                  <span
+                    className="font-display text-2xl italic text-brand-gold text-center px-8"
+                    style={{ opacity: 0.3 }}
+                  >
+                    {lightboxPainting.title}
+                  </span>
+                )}
               </div>
 
               {/* Info */}
@@ -309,7 +418,7 @@ export default function GalleryPage() {
       {/* ═══════════════════════════════════════════════════════
           BOTTOM CTA
       ══════════════════════════════════════════════════════════ */}
-      <section className="bg-[#efe8dc] py-20 px-6 md:px-12">
+      <section className="bg-[#143526] py-20 px-6 md:px-12">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}

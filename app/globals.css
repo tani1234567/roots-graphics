@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --background: #FAF7F2;
-  --foreground: #0D0D0D;
+  --background: #102A1F;
+  --foreground: #EAF4E4;
 }
 
 html {
@@ -19,5 +19,37 @@ body {
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .text-gray-700 {
+    color: #d7e6d1 !important;
+  }
+
+  .text-gray-600 {
+    color: #c5d7bf !important;
+  }
+
+  .text-gray-500 {
+    color: #b4c9ad !important;
+  }
+
+  .text-gray-400 {
+    color: #9cb494 !important;
+  }
+
+  .border-gray-300 {
+    border-color: rgba(197, 215, 191, 0.5) !important;
+  }
+
+  .border-gray-200\/80 {
+    border-color: rgba(197, 215, 191, 0.3) !important;
+  }
+
+  .placeholder-gray-400::placeholder {
+    color: #94ab8e !important;
+  }
+
+  .bg-white {
+    background-color: #163b2b !important;
   }
 }

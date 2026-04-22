@@ -47,8 +47,8 @@ export default function Navbar() {
         transition={{ duration: 0.5, ease: 'easeOut' }}
         className={`fixed top-0 left-0 right-0 z-50 w-full px-4 sm:px-6 md:px-12 py-2 md:py-3 flex items-center justify-between gap-4 transition-all duration-500 ease-in-out ${
           isTransparent
-            ? 'bg-brand-cream/50 border-b border-[#dbcdb6]/50 backdrop-blur-sm'
-            : 'bg-brand-cream/95 backdrop-blur-sm border-b border-[#dbcdb6]'
+            ? 'bg-brand-cream/50 border-b border-[#D6BA74]/50 backdrop-blur-sm'
+            : 'bg-brand-cream/95 backdrop-blur-sm border-b border-[#D6BA74]'
         }`}
       >
         {/* Logo */}

@@ -18,7 +18,7 @@ export default function Footer() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.7, ease: 'easeOut' }}
-      className="bg-[#efe8dc] text-brand-navy px-6 md:px-12 pt-16 pb-8 border-t border-[#d8c9ae]"
+      className="bg-[#143526] text-brand-navy px-6 md:px-12 pt-16 pb-8 border-t border-[#D6BA74]"
     >
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
 

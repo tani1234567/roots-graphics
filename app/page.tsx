@@ -2,6 +2,7 @@
 
 import { useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion, useScroll, useTransform, useMotionValue } from 'framer-motion';
 import { paintings } from '@/data/paintings';
 
@@ -76,18 +77,34 @@ const floatingArtworks: Array<{
   group: ParallaxGroup;
 }> = [
   { id: 0,  title: 'Unity',             artist: 'Jayant B. Mairal', top: '6%',  left: '1%',  rotate: -14, startX: -220, startY: -130, delay: 0.15, w: 130, h: 100, floatDur: 3.8, group: 'top-left' },
-  { id: 1,  title: 'Human Relations I', artist: 'Jayant B. Mairal', top: '15%', left: '9%',  rotate:   9, startX: -180, startY: -190, delay: 0.32, w: 148, h: 116, floatDur: 4.2, group: 'top-left' },
+  { id: 1,  title: 'Winning Horse With the Owner', artist: 'M.B. Parag', top: '15%', left: '9%',  rotate:   9, startX: -180, startY: -190, delay: 0.32, w: 148, h: 116, floatDur: 4.2, group: 'top-left' },
   { id: 2,  title: 'Sunrise',           artist: 'M. B. Parag',      top: '2%',  left: '29%', rotate:  -6, startX:    0, startY: -220, delay: 0.20, w: 138, h: 108, floatDur: 3.5, group: 'top' },
   { id: 3,  title: 'Couple',            artist: 'Jayant B. Mairal', top: '2%',  left: '56%', rotate:   5, startX:    0, startY: -220, delay: 0.42, w: 138, h: 108, floatDur: 4.6, group: 'top' },
-  { id: 4,  title: 'Gau Mata',          artist: 'Jayant B. Mairal', top: '14%', left: '76%', rotate: -10, startX:  180, startY: -190, delay: 0.27, w: 148, h: 116, floatDur: 3.9, group: 'top-right' },
+  { id: 4,  title: "Rhinoceros Winner's of the Battle.", artist: 'M.B. Parag', top: '14%', left: '76%', rotate: -10, startX:  180, startY: -190, delay: 0.27, w: 148, h: 116, floatDur: 3.9, group: 'top-right' },
   { id: 5,  title: 'Narsimha God',      artist: 'M. B. Parag',      top: '5%',  left: '87%', rotate:  13, startX:  220, startY: -130, delay: 0.40, w: 130, h: 100, floatDur: 4.3, group: 'top-right' },
   { id: 6,  title: 'Magic of Peacock',  artist: 'Jayant B. Mairal', top: '31%', left: '88%', rotate:  -8, startX:  260, startY:    0, delay: 0.55, w: 142, h: 112, floatDur: 4.0, group: 'right' },
-  { id: 7,  title: 'Forms of Ganesha', artist: 'M. B. Parag',      top: '58%', left: '87%', rotate:  11, startX:  260, startY:    0, delay: 0.70, w: 136, h: 106, floatDur: 3.7, group: 'right' },
+  { id: 7,  title: 'Celebrations in Dense Forest.', artist: 'M.B. Parag',      top: '58%', left: '87%', rotate:  11, startX:  260, startY:    0, delay: 0.70, w: 136, h: 106, floatDur: 3.7, group: 'right' },
   { id: 8,  title: 'Narsimha God',      artist: 'M. B. Parag',      top: '82%', left: '79%', rotate: -13, startX:  200, startY:  170, delay: 0.37, w: 130, h: 100, floatDur: 4.4, group: 'bottom-right' },
   { id: 9,  title: 'Unity',             artist: 'Jayant B. Mairal', top: '88%', left: '40%', rotate:   7, startX:    0, startY:  220, delay: 0.60, w: 138, h: 108, floatDur: 3.6, group: 'bottom' },
   { id: 10, title: 'Couple',            artist: 'Jayant B. Mairal', top: '82%', left: '3%',  rotate:  12, startX: -200, startY:  170, delay: 0.48, w: 130, h: 100, floatDur: 4.1, group: 'bottom-left' },
   { id: 11, title: 'Sunrise',           artist: 'M. B. Parag',      top: '40%', left: '1%',  rotate:  -7, startX: -260, startY:    0, delay: 0.63, w: 142, h: 112, floatDur: 4.5, group: 'left' },
   { id: 12, title: 'Magic of Peacock',  artist: 'Jayant B. Mairal', top: '65%', left: '2%',  rotate:  10, startX: -260, startY:    0, delay: 0.80, w: 136, h: 106, floatDur: 3.4, group: 'left' },
+];
+
+const floatingArtworkImages = [
+  '/photos/Green_Forest.png',
+  '/photos/Celebrations_in_Dense_Forest.png',
+  '/photos/Narsimha_God.png',
+  '/photos/Couple.png',
+  '/photos/Monkeys_in_the_Jungle.png',
+  '/photos/Winning_Horse.png',
+  '/photos/Rhinoceros.png',
+  '/photos/King_of_Forest.png',
+  '/photos/Blossoming_Forest.png',
+  "/photos/King's_Kingdom.png",
+  '/photos/Dense_Forest.png',
+  "/photos/Winner's_of_Battle_II.png",
+  "/photos/Winner's_of_Battle_III.png",
 ];
 
 // ── Page ───────────────────────────────────────────────────────────────────
@@ -138,7 +155,7 @@ export default function HomePage() {
       ══════════════════════════════════════════════════════════ */}
       <section
         ref={heroRef}
-        className="relative min-h-screen bg-[#f4ede2] flex items-center justify-center overflow-hidden"
+        className="relative min-h-screen bg-brand-cream flex items-center justify-center overflow-hidden"
       >
 
         {/* ── Layer A: Floating artwork cards (z-[2], desktop only) ── */}
@@ -149,6 +166,7 @@ export default function HomePage() {
         >
           {floatingArtworks.map((card) => {
             const { y: scrollY, x: scrollX } = parallaxMap[card.group];
+            const artworkSrc = floatingArtworkImages[card.id % floatingArtworkImages.length];
             return (
               <motion.div
                 key={card.id}
@@ -212,36 +230,14 @@ export default function HomePage() {
                       <span className="absolute top-[7px] right-[7px]  block w-[9px] h-[9px] border-t border-r border-[#C9A84C] opacity-55" />
                       <span className="absolute bottom-[7px] left-[7px]  block w-[9px] h-[9px] border-b border-l border-[#C9A84C] opacity-55" />
                       <span className="absolute bottom-[7px] right-[7px] block w-[9px] h-[9px] border-b border-r border-[#C9A84C] opacity-55" />
-                      <div className="absolute inset-0 flex flex-col items-center justify-center gap-[5px] px-3">
-                        <span
-                          style={{
-                            fontFamily: 'Georgia, "Times New Roman", serif',
-                            fontStyle: 'italic',
-                            fontSize: '11px',
-                            color: '#C9A84C',
-                            opacity: 0.85,
-                            textAlign: 'center',
-                            lineHeight: 1.3,
-                            display: 'block',
-                          }}
-                        >
-                          {card.title}
-                        </span>
-                        <div style={{ width: '18px', height: '1px', background: 'rgba(201,168,76,0.38)' }} />
-                        <span
-                          style={{
-                            fontFamily: 'sans-serif',
-                            fontSize: '7px',
-                            letterSpacing: '0.15em',
-                            textTransform: 'uppercase',
-                            color: '#C9A84C',
-                            opacity: 0.45,
-                            textAlign: 'center',
-                            display: 'block',
-                          }}
-                        >
-                          {card.artist.split(' ').slice(-1)[0]}
-                        </span>
+                      <div className="absolute inset-[6px] overflow-hidden">
+                        <Image
+                          src={artworkSrc}
+                          alt={card.title}
+                          fill
+                          sizes="180px"
+                          className="object-cover"
+                        />
                       </div>
                     </div>
                   </motion.div>
@@ -261,9 +257,9 @@ export default function HomePage() {
             animate={{ scale: [1, 1.003, 1], opacity: [0.96, 1, 0.96] }}
             transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
             style={{
-              width: '54vw',
-              height: '50vh',
-              background: '#f4ede2',                      /* same as hero bg — masks cards behind */
+              width: 'clamp(320px, 64vw, 980px)',
+              height: 'clamp(300px, 56vh, 680px)',
+              background: '#133726',                      /* same as hero bg — masks cards behind */
               border: '5px solid #C9A84C',
               boxShadow:
                 'inset 0 0 0 2px #0D0D0D, inset 0 0 0 5px rgba(201,168,76,0.32), 0 0 60px rgba(201,168,76,0.1)',
@@ -281,7 +277,7 @@ export default function HomePage() {
           className="absolute inset-0 z-[6] pointer-events-none"
           style={{
             background:
-              'radial-gradient(ellipse 58% 50% at center, rgba(255,255,255,0.18) 0%, rgba(244,237,226,0.06) 52%, transparent 72%)',
+              'radial-gradient(ellipse 58% 50% at center, rgba(214,186,116,0.2) 0%, rgba(16,42,31,0.08) 52%, transparent 72%)',
           }}
           aria-hidden="true"
         />
@@ -289,17 +285,17 @@ export default function HomePage() {
         {/* ── Layer D: Edge vignette — z-[7] ── */}
         <div
           className="absolute inset-0 z-[7] pointer-events-none"
-          style={{ boxShadow: 'inset 0 0 130px rgba(10,8,5,0.13)' }}
+          style={{ boxShadow: 'inset 0 0 130px rgba(3,10,7,0.5)' }}
           aria-hidden="true"
         />
 
         {/* ── Layer E: Hero content — z-[10] ── */}
-        <div className="relative z-[10] flex flex-col items-center text-center gap-3 px-6">
+        <div className="relative z-[10] flex flex-col items-center text-center gap-4 px-8 pt-8 md:pt-10">
           <motion.p
             variants={fadeUp(0)}
             initial="hidden"
             animate="visible"
-            className="font-body text-[10px] uppercase tracking-widest text-brand-gold"
+            className="font-body text-xs md:text-sm uppercase tracking-widest text-brand-gold"
           >
             Established 1990 · Mumbai, India
           </motion.p>
@@ -308,7 +304,7 @@ export default function HomePage() {
             variants={fadeUp(0.12)}
             initial="hidden"
             animate="visible"
-            className="font-display text-5xl md:text-6xl lg:text-7xl font-light tracking-wide text-brand-navy leading-none"
+            className="font-display text-6xl md:text-7xl lg:text-8xl font-light tracking-wide text-brand-navy leading-none"
           >
             Roots Graphics
           </motion.h1>
@@ -317,7 +313,7 @@ export default function HomePage() {
             variants={fadeUp(0.24)}
             initial="hidden"
             animate="visible"
-            className="font-body text-base italic text-brand-orange"
+            className="font-body text-lg md:text-xl italic text-brand-orange"
           >
             Excellence Needs Roots
           </motion.p>
@@ -326,14 +322,14 @@ export default function HomePage() {
             variants={fadeUp(0.32)}
             initial="hidden"
             animate="visible"
-            className="w-12 h-px bg-brand-gold"
+            className="w-16 h-px bg-brand-gold"
           />
 
           <motion.p
             variants={fadeUp(0.4)}
             initial="hidden"
             animate="visible"
-            className="font-body text-xs tracking-wider text-gray-500"
+            className="font-body text-sm md:text-base tracking-wider text-gray-500"
           >
             Fine Art Consultants · Art Promoters · Valuers · World Conceptualist
           </motion.p>
@@ -341,7 +337,7 @@ export default function HomePage() {
           <motion.div variants={fadeUp(0.5)} initial="hidden" animate="visible">
             <Link
               href="/gallery"
-              className="mt-1 inline-block font-body text-xs uppercase tracking-widest text-brand-navy border border-brand-navy px-6 py-2.5 transition-all duration-300 hover:bg-brand-orange hover:text-white hover:border-brand-orange"
+              className="mt-1 inline-block font-body text-sm md:text-base uppercase tracking-widest text-brand-navy border border-brand-navy px-8 py-3 transition-all duration-300 hover:bg-brand-orange hover:text-white hover:border-brand-orange"
             >
               Explore Our Collection
             </Link>
@@ -375,17 +371,19 @@ export default function HomePage() {
             transition={{ duration: 0.8, ease: 'easeOut' }}
             className="w-full aspect-[4/5] relative"
             style={{
-              background: '#111',
               border: '4px solid #C9A84C',
               boxShadow: 'inset 0 0 40px rgba(0,0,0,0.6), 0 8px 32px rgba(0,0,0,0.12)',
+              overflow: 'hidden',
             }}
           >
-            <span
-              className="absolute inset-0 flex items-center justify-center font-display text-2xl italic text-brand-gold"
-              style={{ opacity: 0.3 }}
-            >
-              Roots Graphics Collection
-            </span>
+            <Image
+              src="/photos/HomePageMain.jpeg"
+              alt="Roots Graphics artwork display"
+              fill
+              priority
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover"
+            />
           </motion.div>
 
           <motion.div
@@ -419,7 +417,7 @@ export default function HomePage() {
       {/* ═══════════════════════════════════════════════════════
           SECTION 3 — FEATURED PAINTINGS GRID
       ══════════════════════════════════════════════════════════ */}
-      <section className="bg-[#efe8dc] py-24 px-6 md:px-12">
+      <section className="bg-[#143526] py-24 px-6 md:px-12">
         <div className="max-w-7xl mx-auto">
 
           <motion.div
@@ -442,29 +440,117 @@ export default function HomePage() {
             viewport={{ once: true }}
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
           >
-            {featured.map((p) => (
+            {featured.map((p) => {
+              const galleryMatchedPainting =
+                p.title === 'Human Relations I'
+                  ? paintings.find((gp) => gp.title === 'Green Forest')
+                  : p.title === 'Gau Mata (Cow Goddess)'
+                    ? paintings.find((gp) => gp.title === 'Monkeys in the Jungle - Forest')
+                    : p.title === 'Magic of Peacock and Horse Power'
+                      ? paintings.find((gp) => gp.title === 'King of Forest - Jungle.')
+                      : null;
+              const displayPainting = galleryMatchedPainting ?? p;
+              const isNarsimha = p.title === 'Narsimha God with Celebrations of Victory';
+              const isCouple = p.title === 'Couple';
+              const isUnity = p.title === 'Unity';
+              const isGanesha = p.title === 'Different Forms & Faces of Lord Ganesha';
+              const isHumanRelations = p.title === 'Human Relations I';
+              const isGauMata = p.title === 'Gau Mata (Cow Goddess)';
+              const isMagicOfPeacock = p.title === 'Magic of Peacock and Horse Power';
+              return (
               <motion.div
                 key={p.id}
                 variants={item}
                 whileHover={{ y: -4, transition: { duration: 0.25 } }}
                 className="cursor-pointer transition-shadow duration-300 hover:shadow-[0_0_20px_rgba(201,168,76,0.25)]"
-                style={{ background: '#FFFFFF', border: '1px solid rgba(201,168,76,0.28)' }}
+                style={{ background: '#183A2B', border: '1px solid rgba(214,186,116,0.35)' }}
               >
                 <div
                   className="w-full aspect-[4/3] flex items-center justify-center"
-                  style={{ background: '#f3ecdf', borderBottom: '2px solid rgba(201,168,76,0.25)' }}
+                  style={{
+                    background:
+                      isNarsimha ||
+                      isCouple ||
+                      isUnity ||
+                      isGanesha ||
+                      isHumanRelations ||
+                      isGauMata ||
+                      isMagicOfPeacock
+                        ? '#FFFFFF'
+                        : '#1D4733',
+                    borderBottom: '2px solid rgba(201,168,76,0.25)',
+                  }}
                 >
-                  <span className="font-display text-lg italic text-brand-gold" style={{ opacity: 0.2 }}>
-                    [ artwork ]
-                  </span>
+                  {isNarsimha ? (
+                    <Image
+                      src="/photos/Narsimha_God.png"
+                      alt={p.title}
+                      className="w-full h-full object-contain"
+                      width={1200}
+                      height={900}
+                    />
+                  ) : isCouple ? (
+                    <Image
+                      src="/photos/Couple.png"
+                      alt={p.title}
+                      className="w-full h-full object-contain"
+                      width={1200}
+                      height={900}
+                    />
+                  ) : isUnity ? (
+                    <Image
+                      src="/photos/Unity.png"
+                      alt={p.title}
+                      className="w-full h-full object-contain"
+                      width={1200}
+                      height={900}
+                    />
+                  ) : isGanesha ? (
+                    <Image
+                      src="/photos/Different_Forms_&_Faces_of_Lord_Ganesha.png"
+                      alt={p.title}
+                      className="w-full h-full object-contain"
+                      width={1200}
+                      height={900}
+                    />
+                  ) : isHumanRelations ? (
+                    <Image
+                      src="/photos/Green_Forest.png"
+                      alt={p.title}
+                      className="w-full h-full object-contain"
+                      width={1200}
+                      height={900}
+                    />
+                  ) : isGauMata ? (
+                    <Image
+                      src="/photos/Monkeys_in_the_Jungle.png"
+                      alt={p.title}
+                      className="w-full h-full object-contain"
+                      width={1200}
+                      height={900}
+                    />
+                  ) : isMagicOfPeacock ? (
+                    <Image
+                      src="/photos/King_of_Forest.png"
+                      alt={p.title}
+                      className="w-full h-full object-contain"
+                      width={1200}
+                      height={900}
+                    />
+                  ) : (
+                    <span className="font-display text-lg italic text-brand-gold" style={{ opacity: 0.2 }}>
+                      [ artwork ]
+                    </span>
+                  )}
                 </div>
                 <div className="p-5">
-                  <h3 className="font-display text-xl text-brand-navy mb-1">{p.title}</h3>
-                  <p className="font-body text-sm text-brand-orange mb-1">{p.artist}</p>
-                  <p className="font-body text-xs text-gray-500">{p.year} · {p.medium}</p>
+                  <h3 className="font-display text-xl text-brand-navy mb-1">{displayPainting.title}</h3>
+                  <p className="font-body text-sm text-brand-orange mb-1">{displayPainting.artist}</p>
+                  <p className="font-body text-xs text-gray-500">{displayPainting.year} · {displayPainting.medium}</p>
                 </div>
               </motion.div>
-            ))}
+              );
+            })}
           </motion.div>
 
         </div>
@@ -474,9 +560,9 @@ export default function HomePage() {
           SECTION 4 — VISION STATEMENT
       ══════════════════════════════════════════════════════════ */}
       <section
-        className="bg-[#f3ebdf] py-24 px-6 md:px-12"
+        className="bg-[#123224] py-24 px-6 md:px-12"
         style={{
-          backgroundImage: 'radial-gradient(circle, rgba(26,26,46,0.06) 1px, transparent 1px)',
+          backgroundImage: 'radial-gradient(circle, rgba(214,186,116,0.12) 1px, transparent 1px)',
           backgroundSize: '28px 28px',
         }}
       >
@@ -535,7 +621,7 @@ export default function HomePage() {
             className="grid grid-cols-2 md:grid-cols-4 gap-4"
           >
             {collectors.map(({ name, role }) => (
-              <motion.div key={name} variants={item} className="bg-white shadow-sm p-5 flex flex-col gap-1">
+              <motion.div key={name} variants={item} className="bg-[#173F2D] shadow-sm p-5 flex flex-col gap-1 border border-brand-gold/30">
                 <span className="font-display text-lg text-brand-navy leading-snug">{name}</span>
                 <span className="font-body text-xs text-gray-500">{role}</span>
               </motion.div>
@@ -547,7 +633,7 @@ export default function HomePage() {
       {/* ═══════════════════════════════════════════════════════
           SECTION 6 — CTA BANNER
       ══════════════════════════════════════════════════════════ */}
-      <section className="bg-[#f2e3d3] py-24 px-6 md:px-12">
+      <section className="bg-[#0F2E22] py-24 px-6 md:px-12">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -564,13 +650,13 @@ export default function HomePage() {
           <div className="flex flex-col sm:flex-row gap-4 mt-2">
             <Link
               href="/gallery"
-              className="font-body text-sm uppercase tracking-widest bg-brand-orange text-white px-8 py-3 transition-colors duration-300 hover:bg-[#d86a1d]"
+              className="font-body text-sm uppercase tracking-widest bg-brand-orange text-white px-8 py-3 transition-colors duration-300 hover:bg-[#D99C4C]"
             >
               View Gallery
             </Link>
             <Link
               href="/contact"
-              className="font-body text-sm uppercase tracking-widest border border-brand-navy text-brand-navy px-8 py-3 transition-colors duration-300 hover:bg-brand-navy hover:text-white"
+              className="font-body text-sm uppercase tracking-widest border border-brand-navy text-brand-navy px-8 py-3 transition-colors duration-300 hover:bg-brand-gold hover:text-brand-dark hover:border-brand-gold"
             >
               Get in Touch
             </Link>

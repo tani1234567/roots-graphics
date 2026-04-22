@@ -32,7 +32,7 @@ export default function ContactPage() {
       {/* ═══════════════════════════════════════════════════════
           HERO
       ══════════════════════════════════════════════════════════ */}
-      <section className="bg-[#f4ede2] min-h-[40vh] flex items-center justify-center pt-28 pb-12 px-6 md:px-12">
+      <section className="bg-[#102A1F] min-h-[40vh] flex items-center justify-center pt-28 pb-12 px-6 md:px-12">
         <div className="max-w-7xl mx-auto w-full">
           <motion.div
             variants={stagger}
@@ -258,7 +258,7 @@ export default function ContactPage() {
 
               <button
                 type="submit"
-                className="w-full bg-brand-orange text-white font-display text-xl py-4 tracking-wide hover:bg-[#c9631a] transition-colors duration-300 mt-2"
+                className="w-full bg-brand-orange text-white font-display text-xl py-4 tracking-wide hover:bg-[#D0903E] transition-colors duration-300 mt-2"
               >
                 Send Message
               </button>

@@ -150,7 +150,7 @@ export default function AboutPage() {
       {/* ═══════════════════════════════════════════════════════
           SECTION 1 — PAGE HERO
       ══════════════════════════════════════════════════════════ */}
-      <section className="bg-[#f4ede2] min-h-[50vh] flex items-end pb-16 pt-36 px-6 md:px-12">
+      <section className="bg-[#102A1F] min-h-[50vh] flex items-end pb-16 pt-36 px-6 md:px-12">
         <div className="max-w-7xl mx-auto w-full">
           <motion.div
             variants={stagger}
@@ -335,7 +335,7 @@ export default function AboutPage() {
       {/* ═══════════════════════════════════════════════════════
           SECTION 4 — THE POEM
       ══════════════════════════════════════════════════════════ */}
-      <section className="bg-[#f3ebdf] py-24 px-6 md:px-12">
+      <section className="bg-[#123224] py-24 px-6 md:px-12">
         <div className="max-w-3xl mx-auto flex flex-col items-center gap-8 text-center">
 
           <motion.p
@@ -449,7 +449,7 @@ export default function AboutPage() {
               <motion.div
                 key={award}
                 variants={fadeUp}
-                className="bg-white px-5 py-4 flex items-center gap-3 border border-[#e2d5bd]"
+                className="bg-white px-5 py-4 flex items-center gap-3 border border-[#D6BA74]"
               >
                 <span className="text-brand-gold flex-shrink-0">◆</span>
                 <span className="font-body text-sm text-brand-gold">{award}</span>
@@ -463,7 +463,7 @@ export default function AboutPage() {
       {/* ═══════════════════════════════════════════════════════
           SECTION 6 — GLOBAL VISION
       ══════════════════════════════════════════════════════════ */}
-      <section className="bg-[#efe8dc] py-24 px-6 md:px-12">
+      <section className="bg-[#143526] py-24 px-6 md:px-12">
         <div className="max-w-7xl mx-auto">
 
           <motion.div
@@ -509,7 +509,7 @@ export default function AboutPage() {
                   variants={fadeUp}
                   className="p-6"
                   style={{
-                    background: 'rgba(255,255,255,0.86)',
+                    background: 'rgba(16, 42, 31, 0.92)',
                     border: '1px solid rgba(201,168,76,0.3)',
                   }}
                 >
@@ -539,7 +539,7 @@ export default function AboutPage() {
                   variants={fadeUp}
                   className="p-6"
                   style={{
-                    background: 'rgba(255,255,255,0.86)',
+                    background: 'rgba(16, 42, 31, 0.92)',
                     border: '1px solid rgba(201,168,76,0.3)',
                   }}
                 >
