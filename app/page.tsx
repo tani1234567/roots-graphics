@@ -4,6 +4,7 @@ import { useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, useScroll, useTransform, useMotionValue } from 'framer-motion';
+import type { MotionValue } from 'framer-motion';
 import { paintings } from '@/data/paintings';
 
 // ── Variants ───────────────────────────────────────────────────────────────
@@ -131,7 +132,7 @@ export default function HomePage() {
   const cardsOpacity = useTransform(scrollYProgress, [0, 0.45, 0.85], [1, 0.65, 0]);
 
   // Map group → { y, x } motion values
-  const parallaxMap: Record<ParallaxGroup, { y: ReturnType<typeof useTransform>; x: typeof noX }> = {
+  const parallaxMap: Record<ParallaxGroup, { y: MotionValue<number>; x: MotionValue<number> }> = {
     'top-left':     { y: topY,  x: leftX  },
     'top':          { y: topY,  x: noX    },
     'top-right':    { y: topY,  x: rightX },
