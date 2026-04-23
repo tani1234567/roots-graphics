@@ -11,6 +11,12 @@ import { paintings } from '@/data/paintings';
 type Painting = (typeof paintings)[number];
 
 const FILTERS = ['All Works', 'M. B. Parag', 'Jayant B. Mairal'] as const;
+const EXCLUDED_TITLES = new Set([
+  'Human Relations I',
+  'Gau Mata (Cow Goddess)',
+  'Magic of Peacock and Horse Power',
+  'Sunrise',
+]);
 
 type Orientation = 'landscape' | 'portrait' | 'square' | 'unknown';
 
@@ -172,6 +178,7 @@ function PaintingCard({
 export default function GalleryPage() {
   const [filter, setFilter] = useState<string>('All Works');
   const [lightboxId, setLightboxId] = useState<number | null>(null);
+  const visiblePaintings = paintings.filter((p) => !EXCLUDED_TITLES.has(p.title));
   const normalizeArtist = (value: string) => value.toLowerCase().replace(/[.\s]/g, '');
   const matchesFilter = (artist: string, selected: string) => {
     return normalizeArtist(artist) === normalizeArtist(selected);
@@ -179,8 +186,8 @@ export default function GalleryPage() {
 
   const filtered =
     filter === 'All Works'
-      ? paintings
-      : paintings.filter((p) => matchesFilter(p.artist, filter));
+      ? visiblePaintings
+      : visiblePaintings.filter((p) => matchesFilter(p.artist, filter));
 
   const lightboxIndex =
     lightboxId !== null ? filtered.findIndex((p) => p.id === lightboxId) : -1;

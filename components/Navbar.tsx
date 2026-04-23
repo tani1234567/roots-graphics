@@ -53,22 +53,27 @@ export default function Navbar() {
       >
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 min-w-0 pr-2">
-          <Image
-            src="/photos/root-graphics-logo.png"
-            alt="Roots Graphics logo"
-            width={48}
-            height={48}
-            className="h-9 w-9 sm:h-10 sm:w-10 md:h-11 md:w-11 object-contain rounded-sm flex-shrink-0"
-            priority
-          />
+          <div
+            className="h-[55px] w-[55px] sm:h-[60px] sm:w-55px] md:h-[55px] md:w-[60px] rounded-full p-2 shadow-[0_2px_10px_rgba(0,0,0,0.15)] ring-1 ring-[#D6BA74]/60 flex items-center justify-center flex-shrink-0"
+            style={{ backgroundColor: '#FFFFFF' }}
+          >
+            <Image
+              src="/photos/root-graphics-logo.png"
+              alt="Roots Graphics logo"
+              width={48}
+              height={48}
+              className="h-[90%] w-[90%] object-contain"
+              priority
+            />
+          </div>
           <div className="flex flex-col min-w-0">
             <div className="relative inline-block pb-1">
-              <span className="font-display text-lg sm:text-2xl md:text-3xl font-semibold tracking-[0.14em] sm:tracking-[0.2em] md:tracking-[0.25em] text-brand-navy uppercase whitespace-nowrap">
+              <span className="font-display text-lg sm:text-2xl md:text-2xl font-semibold tracking-[0.14em] sm:tracking-[0.2em] md:tracking-[0.25em] text-brand-navy uppercase whitespace-nowrap">
                 Roots Graphics
               </span>
               <span className="absolute bottom-0 left-0 w-full h-px bg-brand-orange" />
             </div>
-            <span className="hidden sm:block font-body text-[10px] uppercase tracking-widest text-brand-gold mt-1.5">
+            <span className="hidden sm:block font-body text-[10px] uppercase tracking-widest text-brand-gold mt-1">
               Excellence Needs Roots
             </span>
           </div>
@@ -129,13 +134,18 @@ export default function Navbar() {
               &times;
             </button>
 
-            <Image
-              src="/photos/root-graphics-logo.png"
-              alt="Roots Graphics logo"
-              width={80}
-              height={80}
-              className="w-20 h-20 object-contain mb-8 rounded-md"
-            />
+            <div
+              className="w-[100px] h-[100px] rounded-full p-3 mb-8 shadow-[0_2px_12px_rgba(0,0,0,0.18)] ring-1 ring-[#D6BA74]/60 flex items-center justify-center"
+              style={{ backgroundColor: '#FFFFFF' }}
+            >
+              <Image
+                src="/photos/root-graphics-logo.png"
+                alt="Roots Graphics logo"
+                width={80}
+                height={80}
+                className="w-[72%] h-[72%] object-contain"
+              />
+            </div>
 
             <ul className="flex flex-col items-center gap-10">
               {navLinks.map(({ href, label }) => {

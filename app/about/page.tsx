@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 
 // ── Variants ───────────────────────────────────────────────────────────────
@@ -114,26 +115,41 @@ function GoldRule() {
 function FramePlaceholder({
   label,
   aspectClass = 'aspect-[3/4]',
+  imageSrc,
 }: {
   label: string;
   aspectClass?: string;
+  imageSrc?: string;
 }) {
+  const hasImage = Boolean(imageSrc);
   return (
     <div
       className={`w-full ${aspectClass} flex items-center justify-center`}
       style={{
-        background: '#111',
+        background: hasImage ? '#FFFFFF' : '#111',
         border: '4px solid #C9A84C',
         boxShadow:
-          'inset 0 0 0 3px #0D0D0D, inset 0 0 0 8px rgba(201,168,76,0.08), inset 0 0 30px rgba(0,0,0,0.5)',
+          hasImage
+            ? 'inset 0 0 0 3px #FFFFFF, inset 0 0 0 8px rgba(201,168,76,0.08), 0 8px 26px rgba(0,0,0,0.12)'
+            : 'inset 0 0 0 3px #0D0D0D, inset 0 0 0 8px rgba(201,168,76,0.08), inset 0 0 30px rgba(0,0,0,0.5)',
       }}
     >
-      <span
-        className="font-display italic text-brand-gold text-xl text-center px-6"
-        style={{ opacity: 0.2 }}
-      >
-        {label}
-      </span>
+      {hasImage ? (
+        <Image
+          src={imageSrc!}
+          alt={label}
+          width={1000}
+          height={1300}
+          className="w-full h-full object-contain p-2"
+        />
+      ) : (
+        <span
+          className="font-display italic text-brand-gold text-xl text-center px-6"
+          style={{ opacity: 0.2 }}
+        >
+          {label}
+        </span>
+      )}
     </div>
   );
 }
@@ -191,7 +207,11 @@ export default function AboutPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
           >
-            <FramePlaceholder label="Roots Graphics" aspectClass="aspect-[3/4]" />
+            <FramePlaceholder
+              label="Roots Graphics"
+              aspectClass="aspect-[3/4]"
+              imageSrc="/photos/HomePageMain.jpeg"
+            />
           </motion.div>
 
           {/* Copy */}
@@ -271,7 +291,11 @@ export default function AboutPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.8, ease: 'easeOut' }}
             >
-              <FramePlaceholder label="M. B. Parag" aspectClass="aspect-[3/4]" />
+              <FramePlaceholder
+                label="M. B. Parag"
+                aspectClass="aspect-[3/4]"
+                imageSrc="/photos/MBparag.jpeg"
+              />
             </motion.div>
 
             <motion.div
@@ -433,7 +457,11 @@ export default function AboutPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.8, ease: 'easeOut' }}
             >
-              <FramePlaceholder label="Jayant B. Mairal" aspectClass="aspect-[3/4]" />
+              <FramePlaceholder
+                label="Jayant B. Mairal"
+                aspectClass="aspect-[3/4]"
+                imageSrc="/photos/Jayant.jpeg"
+              />
             </motion.div>
           </div>
 
