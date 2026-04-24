@@ -26,7 +26,7 @@ export default function Footer() {
         <div className="flex flex-col gap-2">
           <div className="flex items-center gap-3">
             <Image
-              src="/photos/root-graphics-logo.png"
+              src="/icon.svg"
               alt="Roots Graphics logo"
               width={52}
               height={52}
@@ -78,6 +78,12 @@ export default function Footer() {
             paragmairal123@gmail.com
           </a>
           <a
+            href="mailto:mbparag@rootsgraphics.com"
+            className="font-body text-sm text-gray-600 hover:text-brand-navy transition-colors duration-300"
+          >
+            mbparag@rootsgraphics.com
+          </a>
+          <a
             href="tel:+919820070620"
             className="font-body text-sm text-gray-600 hover:text-brand-navy transition-colors duration-300"
           >
@@ -90,6 +96,31 @@ export default function Footer() {
           </p>
         </div>
 
+      </div>
+
+      <div className="max-w-7xl mx-auto mt-12">
+        <div
+          className="px-5 py-5 text-center"
+          style={{
+            background: '#183A2B',
+            border: '1px solid rgba(214,186,116,0.45)',
+          }}
+        >
+          <p className="font-body text-xs uppercase tracking-widest text-brand-gold mb-2">
+            Official Channel
+          </p>
+          <p className="font-display text-xl text-brand-navy mb-2">
+            Videos, Interviews &amp; Speeches by Roots Graphics
+          </p>
+          <a
+            href="https://www.youtube.com/@Art_Cult_By_RootsGraphics"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-body text-sm text-brand-orange underline underline-offset-4 hover:text-brand-navy transition-colors duration-300 break-all"
+          >
+            https://www.youtube.com/@Art_Cult_By_RootsGraphics
+          </a>
+        </div>
       </div>
 
       {/* Bottom bar */}

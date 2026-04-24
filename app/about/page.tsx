@@ -53,11 +53,33 @@ const jayantAwards = [
   'Bhartiya Kala Puraskar 2018',
   '9th International Contemporary Art Exhibition',
   'Participation — Tokyo, Japan',
+  '7th All India Graphic Exhibition, Hyderabad (1982)',
+  'Maharashtra State Exhibition of Art, Bombay (1993)',
+  'Chitrakala Mahavidhyalaya, Nagpur (1983)',
+  'All India Art Exhibition, Mahakoshal Kala Parishad, Raipur (1984–1985)',
+  'Graphic 83 All India Exhibition of Prints, Chandigarh (1984)',
+  'Maharashtra State Silver Jubilee Exhibition, Bombay (1985)',
+  'All India Exhibition of Art, Manipur (1985)',
+  'Certificate of Merit, All India Youth Art Exhibition, Calcutta (1987)',
+  'Biographics in Volume-5 Asian / American Who’s Who',
+];
+
+const mbParagAwards = [
+  '7th All India Graphic Exhibition, Hyderabad (1982)',
+  'Maharashtra State Exhibition of Art, Bombay (1993)',
+  'Chitrakala Mahavidhyalaya, Nagpur (1983)',
+  'All India Art Exhibition, Mahakoshal Kala Parishad, Raipur (1984–1985)',
+  'Graphic 83 All India Exhibition of Prints, Chandigarh (1984)',
+  'Maharashtra State Silver Jubilee Exhibition, Bombay (1985)',
+  'All India Exhibition of Art, Manipur (1985)',
+  'Certificate of Merit, All India Youth Art Exhibition, Calcutta (1987)',
+  'Biographics in Volume-5 Asian / American Who’s Who',
+  'Bhartiya Kala Puraskar 2018',
 ];
 
 const socialInitiatives = [
   {
-    title: 'Free University for Deaf & Mute',
+    title: 'Free University for Deaf & Dump - Hearing and Speech Impared',
     desc: 'M. B. Parag envisions creating a world-class Deaf & Mute University at Stockholm, Sweden, along with a dedicated Film City and Film Industry for the hearing-impaired community.',
   },
   {
@@ -67,6 +89,14 @@ const socialInitiatives = [
   {
     title: 'Free Multi-Specialty Hospitals',
     desc: 'Establishing free cancer and multi-specialty hospitals for tribal and rural communities across India.',
+  },
+  {
+    title: 'Free Community Kitchens & Multi-Speciality Hospitals',
+    desc: 'Free Community Kitchen with Aditya Birla Foundation too, and free multi-speciality hospitals in India and across the whole world.',
+  },
+  {
+    title: '100 Countries Free Education Vision',
+    desc: '100 Countries Free Education University and 100 Countries Free Deaf & Dump i.e. hearing and speech impaired free education university, along with Film Industry, Film Institute, and Film City in 100 countries and in many metropolitan cities of India. Also for physically handicapped university and blind university. For normal regular students, free education university first at Muscat, Oman, then spreading over 100 countries of the globe.',
   },
 ];
 
@@ -82,6 +112,18 @@ const artInitiatives = [
   {
     title: 'IP Exchange',
     desc: 'Listing intellectual properties on exchanges in New York and Singapore, democratizing access to fine art investment globally.',
+  },
+  {
+    title: 'Zurich Serigraph & Prints Auctions',
+    desc: 'Auctions of all benchmark values of paintings and serigraphs at Zurich, Switzerland, including prints auctions too.',
+  },
+  {
+    title: 'International Trading Platform Revenue Model',
+    desc: 'International trading platform programming by BlackRock Company, USA with a 30% weekly revenue model for 1 year, 1 month, and 1 day, with a one-month holiday.',
+  },
+  {
+    title: 'Ownership & Allocation Structure',
+    desc: '10% ownership of paintings, 10% mediators, and 10% UNO.',
   },
 ];
 
@@ -278,6 +320,20 @@ export default function AboutPage() {
             <motion.p variants={fadeUp} className="font-body text-sm text-brand-gold">
               Abstract Artist · Art Promoter · Philanthropist · World Conceptualist
             </motion.p>
+            <motion.div variants={fadeUp} className="flex flex-col items-center gap-1">
+              <a
+                href="mailto:paragmairal123@gmail.com"
+                className="font-body text-sm text-gray-600 hover:text-brand-navy transition-colors duration-300"
+              >
+                paragmairal123@gmail.com
+              </a>
+              <a
+                href="mailto:mbparag@rootsgraphics.com"
+                className="font-body text-sm text-gray-600 hover:text-brand-navy transition-colors duration-300"
+              >
+                mbparag@rootsgraphics.com
+              </a>
+            </motion.div>
             <motion.div variants={fadeUp}>
               <GoldRule />
             </motion.div>
@@ -318,6 +374,34 @@ export default function AboutPage() {
               ))}
             </motion.div>
           </div>
+
+          {/* Awards list */}
+          <motion.div
+            variants={stagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="mt-14"
+          >
+            <motion.h3
+              variants={fadeUp}
+              className="font-display text-3xl text-brand-navy text-center mb-8"
+            >
+              Awards &amp; Recognitions
+            </motion.h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {mbParagAwards.map((award) => (
+                <motion.div
+                  key={award}
+                  variants={fadeUp}
+                  className="bg-brand-cream px-5 py-4 flex items-start gap-3 border border-[#D6BA74]"
+                >
+                  <span className="text-brand-gold flex-shrink-0 mt-0.5">◆</span>
+                  <span className="font-body text-sm text-gray-700 leading-relaxed">{award}</span>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
 
           {/* Timeline */}
           <motion.div

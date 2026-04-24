@@ -33,7 +33,7 @@ export const paintings = [
     year: 2007,
     medium: 'Mixed Media',
     size: 'Variable',
-    description: 'A sacred work gifted to the spouse of the Former President of India, celebrating the divine feminine.',
+    description: "Painting gifted to former President of India spouse, Dr. Devisingh Shekhawat.",
   },
   {
     id: 5,
@@ -42,7 +42,7 @@ export const paintings = [
     year: 2007,
     medium: 'Mixed Media',
     size: 'Variable',
-    description: 'Gifted to the Former President of India at Rashtrapati Bhavan — a celebration of India\'s majestic spirit.',
+    description: 'Painting gifted to Pratibha Tai Patil Shekhawat, former President of India.',
   },
   {
     id: 6,
@@ -69,7 +69,7 @@ export const paintings = [
     year: 2019,
     medium: 'Abstract Mixed Media',
     size: 'Variable',
-    description: 'Gifted to Shri Ratan Tata — a painting that captures the eternal optimism of a new dawn.',
+    description: 'Honourable Ratan Tata gifted with abstract painting.',
   },
   {
     id: 9,
@@ -129,7 +129,7 @@ export const paintings = [
   {
     id: 15,
     title: 'Germination',
-    artist: 'M. B. Parag',
+    artist: 'Jayant B. Mairal',
     year: 1993,
     medium: 'Acrylic on Papers',
     size: '21" x 25" inches.',

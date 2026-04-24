@@ -11,16 +11,17 @@ import { paintings } from '@/data/paintings';
 type Painting = (typeof paintings)[number];
 
 const FILTERS = ['All Works', 'M. B. Parag', 'Jayant B. Mairal'] as const;
-const EXCLUDED_TITLES = new Set([
-  'Human Relations I',
-  'Gau Mata (Cow Goddess)',
-  'Magic of Peacock and Horse Power',
-  'Sunrise',
+const EXCLUDED_TITLES = new Set<string>([
+  'Prosperity with Landmarks & Achievements.',
 ]);
 
 type Orientation = 'landscape' | 'portrait' | 'square' | 'unknown';
 
 function getPaintingImageSrc(title: string): string | null {
+  if (title === 'Human Relations I') return '/photos/Human_Relations.png';
+  if (title === 'Sunrise') return '/photos/Sunrise.png';
+  if (title === 'Gau Mata (Cow Goddess)') return '/photos/Gau_Mata.png';
+  if (title === 'Magic of Peacock and Horse Power') return '/photos/Magic _of_Peacock.png';
   if (title === 'Narsimha God with Celebrations of Victory') return '/photos/Narsimha_God.png';
   if (title === 'Couple') return '/photos/Couple.png';
   if (title === 'Unity') return '/photos/Unity.png';
@@ -194,13 +195,6 @@ export default function GalleryPage() {
 
   const lightboxPainting = lightboxIndex !== -1 ? filtered[lightboxIndex] : null;
   const lightboxImageSrc = lightboxPainting ? getPaintingImageSrc(lightboxPainting.title) : null;
-  const lightboxOrientation = useImageOrientation(lightboxImageSrc);
-  const lightboxAspectClass =
-    lightboxOrientation === 'portrait'
-      ? 'aspect-[4/5]'
-      : lightboxOrientation === 'square'
-        ? 'aspect-square'
-        : 'aspect-[4/3]';
 
   const goNext = () => {
     if (lightboxIndex !== -1) {
@@ -327,7 +321,7 @@ export default function GalleryPage() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.28 }}
-            className="fixed inset-0 z-50 flex items-center justify-center px-4 md:px-20"
+            className="fixed inset-0 z-50 overflow-y-auto px-4 py-6 md:px-10"
             style={{ background: 'rgba(13,13,13,0.96)' }}
             onClick={(e) => {
               if (e.target === e.currentTarget) setLightboxId(null);
@@ -336,7 +330,7 @@ export default function GalleryPage() {
             {/* Close */}
             <button
               onClick={() => setLightboxId(null)}
-              className="absolute top-5 right-6 text-white hover:text-brand-orange transition-colors duration-200 text-4xl leading-none z-10"
+              className="fixed top-5 right-6 text-white hover:text-brand-orange transition-colors duration-200 text-4xl leading-none z-10"
               aria-label="Close lightbox"
             >
               &times;
@@ -345,7 +339,7 @@ export default function GalleryPage() {
             {/* Prev */}
             <button
               onClick={goPrev}
-              className="absolute left-3 md:left-6 text-white hover:text-brand-gold transition-colors duration-200 z-10 p-3 text-5xl leading-none"
+              className="fixed left-2 md:left-6 top-1/2 -translate-y-1/2 text-white hover:text-brand-gold transition-colors duration-200 z-10 p-2 md:p-3 text-4xl md:text-5xl leading-none"
               aria-label="Previous painting"
             >
               &#8249;
@@ -354,70 +348,73 @@ export default function GalleryPage() {
             {/* Next */}
             <button
               onClick={goNext}
-              className="absolute right-3 md:right-6 text-white hover:text-brand-gold transition-colors duration-200 z-10 p-3 text-5xl leading-none"
+              className="fixed right-2 md:right-6 top-1/2 -translate-y-1/2 text-white hover:text-brand-gold transition-colors duration-200 z-10 p-2 md:p-3 text-4xl md:text-5xl leading-none"
               aria-label="Next painting"
             >
               &#8250;
             </button>
 
-            {/* Content — re-animates on each painting change */}
-            <motion.div
-              key={lightboxPainting.id}
-              initial={{ opacity: 0, scale: 0.94 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.94 }}
-              transition={{ duration: 0.28, ease: 'easeOut' }}
-              className="flex flex-col items-center gap-6 w-full max-w-3xl"
-              onClick={(e) => e.stopPropagation()}
-            >
-              {/* Frame placeholder */}
-              <div
-                className={`w-full ${lightboxAspectClass} flex items-center justify-center`}
-                style={{
-                  maxWidth: '70vw',
-                  background: lightboxImageSrc ? '#FFFFFF' : '#111',
-                  border: '4px solid #C9A84C',
-                  boxShadow:
-                    'inset 0 0 0 3px #0D0D0D, inset 0 0 0 6px rgba(201,168,76,0.18), 0 0 60px rgba(201,168,76,0.08)',
-                }}
+            <div className="min-h-full flex items-center justify-center">
+              {/* Content — re-animates on each painting change */}
+              <motion.div
+                key={lightboxPainting.id}
+                initial={{ opacity: 0, scale: 0.94 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.94 }}
+                transition={{ duration: 0.28, ease: 'easeOut' }}
+                className="flex flex-col items-center gap-5 w-full max-w-5xl mx-auto"
+                onClick={(e) => e.stopPropagation()}
               >
-                {lightboxImageSrc ? (
-                  <Image
-                    src={lightboxImageSrc}
-                    alt={lightboxPainting.title}
-                    width={1400}
-                    height={1050}
-                    className="w-full h-full object-contain"
-                  />
-                ) : (
-                  <span
-                    className="font-display text-2xl italic text-brand-gold text-center px-8"
-                    style={{ opacity: 0.3 }}
+                {/* Frame placeholder */}
+                <div className="w-full flex items-center justify-center px-2 md:px-12">
+                  <div
+                    className="w-full min-h-[40vh] max-h-[68vh] flex items-center justify-center"
+                    style={{
+                      maxWidth: 'min(92vw, 980px)',
+                      background: lightboxImageSrc ? '#FFFFFF' : '#111',
+                      border: '4px solid #C9A84C',
+                      boxShadow:
+                        'inset 0 0 0 3px #0D0D0D, inset 0 0 0 6px rgba(201,168,76,0.18), 0 0 60px rgba(201,168,76,0.08)',
+                    }}
                   >
+                    {lightboxImageSrc ? (
+                      <Image
+                        src={lightboxImageSrc}
+                        alt={lightboxPainting.title}
+                        width={1600}
+                        height={1600}
+                        className="w-auto h-auto max-w-full max-h-[66vh] object-contain"
+                      />
+                    ) : (
+                      <span
+                        className="font-display text-2xl italic text-brand-gold text-center px-8"
+                        style={{ opacity: 0.3 }}
+                      >
+                        {lightboxPainting.title}
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                {/* Info */}
+                <div className="w-full max-w-3xl text-center flex flex-col items-center gap-2 px-3">
+                  <h2 className="font-display text-2xl md:text-4xl text-white break-words">
                     {lightboxPainting.title}
-                  </span>
-                )}
-              </div>
+                  </h2>
+                  <p className="font-body text-sm text-brand-gold tracking-wide break-words">
+                    {lightboxPainting.artist} · {lightboxPainting.year} · {lightboxPainting.medium} · {lightboxPainting.size}
+                  </p>
+                  <p className="font-body text-sm text-gray-300 leading-relaxed max-w-xl mt-1 break-words">
+                    {lightboxPainting.description}
+                  </p>
+                </div>
 
-              {/* Info */}
-              <div className="text-center flex flex-col items-center gap-2 px-4">
-                <h2 className="font-display text-4xl text-white">
-                  {lightboxPainting.title}
-                </h2>
-                <p className="font-body text-sm text-brand-gold tracking-wide">
-                  {lightboxPainting.artist} &nbsp;·&nbsp; {lightboxPainting.year} &nbsp;·&nbsp;{' '}
-                  {lightboxPainting.medium} &nbsp;·&nbsp; {lightboxPainting.size}
+                {/* Counter */}
+                <p className="font-body text-xs uppercase tracking-widest text-gray-600">
+                  {lightboxIndex + 1} / {filtered.length}
                 </p>
-                <p className="font-body text-sm text-gray-300 leading-relaxed max-w-xl mt-1">
-                  {lightboxPainting.description}
-                </p>
-              </div>
-
-              {/* Counter */}
-              <p className="font-body text-xs uppercase tracking-widest text-gray-600">
-                {lightboxIndex + 1} &nbsp;/&nbsp; {filtered.length}
-              </p>
-            </motion.div>
+              </motion.div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

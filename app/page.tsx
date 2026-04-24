@@ -91,6 +91,138 @@ const pillars = [
   },
 ];
 
+const vipMoments = [
+  {
+    id: 101,
+    title: 'M. B. Parag, Janin Sayed RAZA, Sayed Haydar RAZA & Arvind Inamdar',
+    info: 'From Left M. B. PARAG alias Parag Mairal, Janin Sayed RAZA, Padmashree Sayed Haydar RAZA, and Late Former DGP of Maharashtra Shri. Arvind Inamdar.',
+    src: '/vip_clicks/Janin Sayed RAZA.jpeg',
+  },
+  {
+    id: 102,
+    title: 'Jayant Mairal With Padmashree Sayed Haydar RAZA',
+    info: 'Jayant Mairal with Padmashree Sayed Haydar RAZA in artist meet organized by M.B. PARAG alias Parag Mairal at Nagpur.',
+    src: '/vip_clicks/Sayed Haydar RAZA.jpeg',
+  },
+  {
+    id: 1,
+    title: 'Ratan Tata Ji & M. B. Parag',
+    info: 'Rainbow Painting with Ratan Tata Ji & M. B. Parag Alias Parag Mairal.',
+    src: '/vip_clicks/Ratan Tata Ji .jpeg',
+  },
+  {
+    id: 2,
+    title: 'Amitabh Bachchan Ji & M. B. Parag',
+    info: 'Amitabh Bachchan Ji & M.B. PARAG Alias Parag Mairal.',
+    src: '/vip_clicks/Amitabh Bachchan Ji.jpeg',
+  },
+  {
+    id: 3,
+    title: 'Ambassador Javier Paulinich',
+    info: 'Ambassador of Peru Javier Paulinich & M. B. PARAG.',
+    src: '/vip_clicks/Javier Paulinich.jpeg',
+  },
+  {
+    id: 4,
+    title: 'Ashish Shelar Ji, Arun Sabnis Ji & M. B. Parag',
+    info: 'Cabinet Cultural Minister of Maharashtra Mr. Ashish Shelar Ji, Chairman of Fulora Foundations Mr. Arun Sabnis Ji & M. B. PARAG Alias Parag Mairal.',
+    src: '/vip_clicks/Ashish Shelar Ji.jpeg',
+  },
+  {
+    id: 5,
+    title: 'Karsan Ghavri Ji',
+    info: 'Legendary Cricket Player Shri. Karsan Ghavri Ji.',
+    src: '/vip_clicks/Karsan Ghavri.jpeg',
+  },
+  {
+    id: 6,
+    title: 'Muthu Swami Iyer, M. B. Parag & Jayant Mairal',
+    info: 'Guruvayur Temple M. B. PARAG Alias Parag Mairal & Former International Football Player Mr. Muthu Swami Iyer and Jayant Mairal too.',
+    src: '/vip_clicks/Muthu Swami Iyer.jpeg',
+  },
+  {
+    id: 7,
+    title: 'Dilip Vengsarkar & M. B. Parag',
+    info: 'Legendary Cricket Player Shri. Dilip Vengsarkar & M. B. PARAG Alias Parag Mairal.',
+    src: '/vip_clicks/Dilip Vengsarkar.jpeg',
+  },
+  {
+    id: 8,
+    title: 'Hema Malini Ji',
+    info: 'Legendary Film Actress Mrs. Hema Malini Ji.',
+    src: '/vip_clicks/Hema Malini Ji.jpeg',
+  },
+  {
+    id: 9,
+    title: 'Minal Potnis',
+    info: 'Minal Potnis.',
+    src: '/vip_clicks/Minal Potnis.jpeg',
+  },
+  {
+    id: 10,
+    title: 'Tej Sapru Ji',
+    info: 'Tej Sapru Ji.',
+    src: '/vip_clicks/Tej_Sapru.jpeg',
+  },
+  {
+    id: 11,
+    title: 'Varsha Usgaonkar',
+    info: 'Film Actress Varsha Usgaonkar.',
+    src: '/vip_clicks/Varsha Usgaonkar.jpeg',
+  },
+  {
+    id: 12,
+    title: 'Prem Chopra Ji, Mithun Singh Ji & M. B. Parag',
+    info: 'Mr. Prem Chopra Ji, Artist Mithun Singh Ji & M. B. PARAG Alias Parag Mairal.',
+    src: '/vip_clicks/Prem Chopra Ji.jpeg',
+  },
+];
+
+const dignitaryLetters = [
+  {
+    id: 1,
+    title: 'Amitabh Bachchan Ji Letter (21 Nov 2025, 2:10 PM)',
+    info: '“21st of November, 2025 is the most delightful moment of my life” — letter from legendary film actor Mr. Amitabh Bachchan Ji at 2:10 PM.',
+    src: '/letters/Amitabh B.jpeg',
+  },
+  {
+    id: 2,
+    title: 'Appreciation by Late Former DGP Shri Arvind Inamdar',
+    info: 'Official appreciation letter from Late Former DGP Shri Arvind Inamdar.',
+    src: '/letters/Inamdar.png',
+  },
+  {
+    id: 3,
+    title: 'Letter from Shri Banwarilal Purohit',
+    info: 'Letter from Honorable Shri Banwarilal Purohit, Editor of Daily English newspaper Hitvada and presently Governor of Punjab.',
+    src: '/letters/Banwarilal Purohit.jpeg',
+  },
+  {
+    id: 4,
+    title: 'Letter from G. K. Das (Secretary to President)',
+    info: 'Official correspondence from G. K. Das, Secretary to the President.',
+    src: '/letters/GKDas.png',
+  },
+  {
+    id: 5,
+    title: 'Letter from Amir Adam Khan (Dubai, U.A.E.)',
+    info: 'Letter from Amir Adam Khan, Dubai – U.A.E.',
+    src: '/letters/Amir Khan.jpeg',
+  },
+  {
+    id: 6,
+    title: 'Letter from Sami Khatib (Medley Pharmaceuticals Ltd)',
+    info: 'Letter from Sami Khatib, Chairman & MD of Medley Pharmaceuticals Ltd.',
+    src: '/letters/Medley.png',
+  },
+  {
+    id: 7,
+    title: 'Letter from Tata Trusts by Ratan Tata Ji',
+    info: 'Official letter from Tata Trusts by Ratan Tata Ji.',
+    src: '/letters/Tata_Trust.png',
+  },
+];
+
 // ── Floating artwork cards — hero background layer ─────────────────────────
 // group drives the scroll-parallax direction:
 //   top-left / top / top-right  → scatter upward + outward on scroll
@@ -448,7 +580,133 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════
-          SECTION 3 — FEATURED PAINTINGS GRID
+          SECTION 3 — VIP / VVIP MOMENTS
+      ══════════════════════════════════════════════════════════ */}
+      <section className="bg-[#123224] py-24 px-6 md:px-12">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="text-center mb-14"
+          >
+            <p className="font-body text-xs uppercase tracking-widest text-brand-gold mb-3">
+              Special Moments
+            </p>
+            <h2 className="font-display text-5xl text-brand-navy mb-3">
+              Moments With Dignitaries &amp; Icons
+            </h2>
+            <p className="font-body text-sm uppercase tracking-widest text-brand-orange">
+              VIP, VVIP, and film personalities with Roots Graphics
+            </p>
+          </motion.div>
+
+          <motion.div
+            variants={stagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
+            {vipMoments.map((moment) => (
+              <motion.div
+                key={moment.id}
+                variants={item}
+                whileHover={{ y: -4, transition: { duration: 0.25 } }}
+                className="bg-[#183A2B] transition-shadow duration-300 hover:shadow-[0_0_20px_rgba(201,168,76,0.25)]"
+                style={{ border: '1px solid rgba(214,186,116,0.35)' }}
+              >
+                <div
+                  className="w-full aspect-[3/4] relative"
+                  style={{
+                    background: '#FFFFFF',
+                    borderBottom: '2px solid rgba(201,168,76,0.25)',
+                  }}
+                >
+                  <Image
+                    src={moment.src}
+                    alt={moment.title}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-contain p-1"
+                  />
+                </div>
+                <div className="p-5">
+                  <h3 className="font-display text-xl text-brand-navy mb-2">{moment.title}</h3>
+                  <p className="font-body text-sm text-gray-500 leading-relaxed">{moment.info}</p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════
+          SECTION 4 — LETTERS FROM DIGNITARIES
+      ══════════════════════════════════════════════════════════ */}
+      <section className="bg-brand-cream py-24 px-6 md:px-12">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="text-center mb-14"
+          >
+            <p className="font-body text-xs uppercase tracking-widest text-brand-orange mb-3">
+              Official Correspondence
+            </p>
+            <h2 className="font-display text-5xl text-brand-navy mb-3">
+              Letters From Dignitaries &amp; Icons
+            </h2>
+            <p className="font-body text-sm uppercase tracking-widest text-brand-gold">
+              Appreciation letters and acknowledgements received by Roots Graphics
+            </p>
+          </motion.div>
+
+          <motion.div
+            variants={stagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
+            {dignitaryLetters.map((letter) => (
+              <motion.div
+                key={letter.id}
+                variants={item}
+                whileHover={{ y: -4, transition: { duration: 0.25 } }}
+                className="bg-white transition-shadow duration-300 hover:shadow-[0_0_20px_rgba(201,168,76,0.25)]"
+                style={{ border: '1px solid rgba(214,186,116,0.35)' }}
+              >
+                <div
+                  className="w-full aspect-[4/3] relative"
+                  style={{
+                    background: '#FFFFFF',
+                    borderBottom: '2px solid rgba(201,168,76,0.25)',
+                  }}
+                >
+                  <Image
+                    src={letter.src}
+                    alt={letter.title}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-contain p-1"
+                  />
+                </div>
+                <div className="p-5">
+                  <h3 className="font-display text-xl text-brand-navy mb-2">{letter.title}</h3>
+                  <p className="font-body text-sm text-gray-600 leading-relaxed">{letter.info}</p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════
+          SECTION 5 — FEATURED PAINTINGS GRID
       ══════════════════════════════════════════════════════════ */}
       <section className="bg-[#143526] py-24 px-6 md:px-12">
         <div className="max-w-7xl mx-auto">
@@ -590,7 +848,7 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════
-          SECTION 4 — VISION STATEMENT
+          SECTION 6 — VISION STATEMENT
       ══════════════════════════════════════════════════════════ */}
       <section
         className="bg-[#123224] py-24 px-6 md:px-12"
@@ -633,7 +891,7 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════
-          SECTION 5 — NOTABLE RECOGNITION
+          SECTION 7 — NOTABLE RECOGNITION
       ══════════════════════════════════════════════════════════ */}
       <section className="bg-brand-cream py-24 px-6 md:px-12">
         <div className="max-w-7xl mx-auto">
@@ -664,7 +922,7 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════
-          SECTION 6 — CTA BANNER
+          SECTION 8 — CTA BANNER
       ══════════════════════════════════════════════════════════ */}
       <section className="bg-[#0F2E22] py-24 px-6 md:px-12">
         <motion.div

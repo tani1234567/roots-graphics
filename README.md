@@ -20,6 +20,18 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Contact Form Email Setup (Brevo)
+
+The contact form sends submissions using Brevo (no database required).
+
+1. Copy `.env.example` to `.env.local`
+2. Set these values:
+   - `BREVO_API_KEY` = your Brevo API key
+   - `BREVO_SENDER_EMAIL` = a verified sender email in Brevo
+   - `BREVO_SENDER_NAME` = display sender name (optional)
+   - `CONTACT_TO_EMAIL` = destination inbox (defaults to `mbparag@rootsgraphics.com`)
+3. Restart the dev server after updating env vars.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

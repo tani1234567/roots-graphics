@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, type FormEvent } from 'react';
 import { motion } from 'framer-motion';
 
 // ── Variants ───────────────────────────────────────────────────────────────
@@ -22,6 +23,57 @@ const inputClass =
 // ── Page ───────────────────────────────────────────────────────────────────
 
 export default function ContactPage() {
+  const [isSending, setIsSending] = useState(false);
+  const [status, setStatus] = useState<{ type: 'idle' | 'success' | 'error'; message: string }>({
+    type: 'idle',
+    message: '',
+  });
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setIsSending(true);
+    setStatus({ type: 'idle', message: '' });
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const payload = {
+      name: String(formData.get('name') ?? '').trim(),
+      email: String(formData.get('email') ?? '').trim(),
+      subject: String(formData.get('subject') ?? '').trim(),
+      message: String(formData.get('message') ?? '').trim(),
+    };
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result?.error || 'Failed to send message.');
+      }
+
+      form.reset();
+      setStatus({
+        type: 'success',
+        message: 'Message sent successfully. We will get back to you soon.',
+      });
+    } catch (error) {
+      setStatus({
+        type: 'error',
+        message:
+          error instanceof Error
+            ? error.message
+            : 'Unable to send message right now. Please try again shortly.',
+      });
+    } finally {
+      setIsSending(false);
+    }
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 12 }}
@@ -182,9 +234,7 @@ export default function ContactPage() {
             transition={{ duration: 0.8, ease: 'easeOut' }}
           >
             <form
-              action="mailto:paragmairal123@gmail.com"
-              method="post"
-              encType="text/plain"
+              onSubmit={handleSubmit}
               className="flex flex-col gap-7"
             >
 
@@ -258,10 +308,22 @@ export default function ContactPage() {
 
               <button
                 type="submit"
+                disabled={isSending}
                 className="w-full bg-brand-orange text-white font-display text-xl py-4 tracking-wide hover:bg-[#D0903E] transition-colors duration-300 mt-2"
               >
-                Send Message
+                {isSending ? 'Sending...' : 'Send Message'}
               </button>
+
+              {status.type !== 'idle' && (
+                <p
+                  className={`font-body text-sm text-center ${
+                    status.type === 'success' ? 'text-green-700' : 'text-red-700'
+                  }`}
+                  aria-live="polite"
+                >
+                  {status.message}
+                </p>
+              )}
 
               <p className="font-body text-xs text-gray-400 text-center">
                 Or reach out via email directly — we respond within 24 hours.
