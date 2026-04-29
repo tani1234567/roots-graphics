@@ -71,6 +71,8 @@ const collectors = [
   { name: 'Art Director of Jain Irrigation & Jain Pipes Mr. Vikas Malhara', role: 'Notable Patron' },
   { name: 'ATN TV Channel', role: 'Mumbai' },
   { name: 'Plus TV Channel', role: 'Media' },
+  { name: 'Architect Mr. Hafeez Contractor', role: 'Mumbai' },
+  { name: 'Mrs. Rubi Anand', role: 'Director' },
 ];
 
 const pillars = [
@@ -88,6 +90,62 @@ const pillars = [
     icon: '◎',
     title: 'Opportunity',
     desc: 'Uplifting underprivileged communities through art, education, and healthcare',
+  },
+];
+
+const presidentialVisitPhotos = [
+  {
+    title: 'Traditional Achal Bharai to the President',
+    description: 'M.B. Parag performs traditional Achal Bharai to the President Shri. Pratibha Tai Patil on occasion of Sharad Purnima',
+    src: '/vip_clicks/Achal Bharai.png',
+  },
+  {
+    title: 'Presenting to the President\'s Spouse',
+    description: 'M.B. Parag giving traditional Shawl & Shrifal (Coconut) to the Hon. President\'s spouse Dr. Devisingh Shekawat',
+    src: '/vip_clicks/President\'s spous.png',
+  },
+  {
+    title: 'Presenting to the President\'s Son',
+    description: 'M.B. Parag giving traditional Shawl & Shrifal (Coconut) to the Hon. President\'s son Mr. Rao Saheb Shekawat',
+    src: '/vip_clicks/President\'s son.png',
+  },
+  {
+    title: 'Gifting Gau Mata (Cow Goddess)',
+    description: 'M.B. Parag & Jayant Mairal gifting painting titled "Gau Mata (Cow Goddess)"',
+    src: '/vip_clicks/Cow Goddess.png',
+  },
+  {
+    title: 'Gifting Magic of Peacock and Horse Power',
+    description: 'M.B. Parag & Jayant Mairal gifting painting titled "Magic of Peacock and Horse Power"',
+    src: '/vip_clicks/Peacock And Horse.png',
+  },
+];
+
+const storyHighlights = [
+  {
+    year: '1961-62',
+    title: 'Meeting Pandit Jawaharlal Nehru',
+    description: 'A 45-variety rose garland crafted by our mother was presented to Jawaharlal Nehru, Chacha Nehru, during his visit to Wardha. The flowers included rare black roses and green roses from our family garden.',
+  },
+  {
+    year: '1980',
+    title: 'Encounter with Indira Gandhi Ji',
+    description: 'Met India\'s former Prime Minister Indira Gandhi in 12th standard. Spent nearly ten minutes in conversation, shared admiration for her leadership, and received her autograph.',
+  },
+  {
+    year: '1991',
+    title: 'Walking with Rajiv Gandhi',
+    description: 'Had the honour of walking closely beside Rajiv Gandhi during his historic Sadbhavana Yatra in Nagpur, starting from Panchsheel Square.',
+  },
+  {
+    year: '1993',
+    title: 'Meeting Bal Thackeray',
+    description: 'Met the legendary leader Bal Thackeray. He wrote a special article about us in the Marathi magazine Marmik.',
+  },
+  {
+    year: '2010',
+    title: 'Supporting Global Cyclist Saurabh Dahal',
+    description: 'Supported and promoted world-tour cyclist Saurabh Dahal from Nepal. Introduced him to Nitin Gadkari and organized his journey to Gujarat with a ceremonial flag-off by Uddhav Thackeray.',
   },
 ];
 
@@ -150,7 +208,7 @@ const vipMoments = [
     id: 8,
     title: 'Hema Malini Ji',
     info: 'Legendary Film Actress Mrs. Hema Malini Ji.',
-    src: '/vip_clicks/Hema Malini Ji.jpeg',
+    src: '/vip_clicks/Hema Malini maam.jpeg',
   },
   {
     id: 9,
@@ -189,13 +247,13 @@ const dignitaryLetters = [
     id: 2,
     title: 'Appreciation by Late Former DGP Shri Arvind Inamdar',
     info: 'Official appreciation letter from Late Former DGP Shri Arvind Inamdar.',
-    src: '/letters/Inamdar.png',
+    src: '/letters/Arvind Inamdar.jpeg',
   },
   {
     id: 3,
     title: 'Letter from Shri Banwarilal Purohit',
     info: 'Letter from Honorable Shri Banwarilal Purohit, Editor of Daily English newspaper Hitvada and presently Governor of Punjab.',
-    src: '/letters/Banwarilal Purohit.jpeg',
+    src: '/letters/Banwarilal Purohit.jpeg?v=2',
   },
   {
     id: 4,
@@ -917,6 +975,235 @@ export default function HomePage() {
                 <span className="font-body text-xs text-gray-500">{role}</span>
               </motion.div>
             ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════
+          SECTION 7 — STORY BOARD OF INDIA
+      ══════════════════════════════════════════════════════════ */}
+      <section className="bg-[#143526] py-24 px-6 md:px-12">
+        <div className="max-w-7xl mx-auto">
+
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="text-center mb-16"
+          >
+            <p className="font-body text-xs uppercase tracking-widest text-brand-gold mb-3">
+              Our Heritage
+            </p>
+            <h2 className="font-display text-5xl text-brand-navy mb-4">
+              Story Board of India
+            </h2>
+            <p className="font-body text-sm text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Connectivity for Our Beloved Nation, India
+            </p>
+          </motion.div>
+
+          <motion.div
+            variants={stagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="max-w-4xl mx-auto mb-16"
+          >
+            <motion.p
+              variants={item}
+              className="font-body text-gray-700 leading-relaxed mb-5"
+            >
+              In 1962, my father was a Professor of English at G. S. College of Commerce in Wardha, Maharashtra, near Nagpur. Wardha is a sacred and historic place, home to Sevagram Ashram, where Mahatma Gandhi lived and worked. On such a pure and inspiring land, my parents created a beautiful garden of 45 varieties of roses, including rare black and green roses.
+            </motion.p>
+            <motion.p
+              variants={item}
+              className="font-body text-gray-700 leading-relaxed"
+            >
+              Our mother carried water on her head from nearly a quarter kilometre every day, nurturing every plant with love and care. It was in this sacred place that our family&apos;s journey with India&apos;s greatest leaders began — moments that shaped our values and commitment to the nation.
+            </motion.p>
+          </motion.div>
+
+          <motion.div
+            variants={stagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-2 gap-6"
+          >
+            {storyHighlights.map((highlight, idx) => (
+              <motion.div
+                key={idx}
+                variants={item}
+                className="p-6 border-l-4"
+                style={{
+                  borderColor: '#C9A84C',
+                  background: 'rgba(16, 42, 31, 0.6)',
+                }}
+              >
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0">
+                    <span className="inline-block px-3 py-1 text-xs uppercase tracking-widest text-brand-navy bg-brand-gold rounded-full font-bold">
+                      {highlight.year}
+                    </span>
+                  </div>
+                </div>
+                <h4 className="font-display text-xl text-brand-navy mt-4 mb-2">
+                  {highlight.title}
+                </h4>
+                <p className="font-body text-sm text-gray-600 leading-relaxed">
+                  {highlight.description}
+                </p>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.3 }}
+            className="mt-16 p-8 text-center"
+            style={{
+              background: 'rgba(201, 168, 76, 0.08)',
+              border: '1px solid rgba(201,168,76,0.2)',
+            }}
+          >
+            <p className="font-body text-gray-600 text-sm leading-relaxed max-w-2xl mx-auto">
+              Through these encounters and experiences, we have remained committed to contributing to our beloved nation, India. Though financial constraints have at times limited our efforts, the spirit of service, connectivity, and nation-building has always guided our path. Our story is India&apos;s story — a testament to the values that unite us all.
+            </p>
+          </motion.div>
+
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════
+          SECTION 7B — PRESIDENTIAL VISIT TO RASHTRAPATI BHAVAN
+      ══════════════════════════════════════════════════════════ */}
+      <section className="bg-brand-cream py-24 px-6 md:px-12">
+        <div className="max-w-7xl mx-auto">
+
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="text-center mb-16"
+          >
+            <p className="font-body text-xs uppercase tracking-widest text-brand-orange mb-3">
+              Historic Moment
+            </p>
+            <h2 className="font-display text-5xl text-brand-navy mb-4">
+              Rashtrapati Bhavan Visit
+            </h2>
+            <p className="font-body text-sm uppercase tracking-widest text-brand-gold">
+              On occasion of Sharad Purnima — 25th October, 2007
+            </p>
+          </motion.div>
+
+          <motion.div
+            variants={stagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
+            {presidentialVisitPhotos.map((photo, idx) => (
+              <motion.div
+                key={idx}
+                variants={item}
+                className="bg-white overflow-hidden transition-shadow duration-300 hover:shadow-lg"
+                style={{ border: '1px solid rgba(214,186,116,0.35)' }}
+              >
+                {/* Image */}
+                <div
+                  className="w-full aspect-[4/3] relative flex items-center justify-center"
+                  style={{
+                    background: '#F5F5F5',
+                    borderBottom: '2px solid rgba(201,168,76,0.25)',
+                  }}
+                >
+                  <Image
+                    src={photo.src}
+                    alt={photo.title}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-contain p-1"
+                  />
+                </div>
+
+                {/* Content */}
+                <div className="p-5">
+                  <h3 className="font-display text-lg text-brand-navy mb-2">
+                    {photo.title}
+                  </h3>
+                  <p className="font-body text-sm text-gray-700 leading-relaxed">
+                    {photo.description}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════
+          SECTION 7C — TRADEMARKS & BRAND LOGOS
+      ══════════════════════════════════════════════════════════ */}
+      <section className="bg-brand-cream py-24 px-6 md:px-12">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="text-center mb-16"
+          >
+            <h2 className="font-display text-4xl md:text-5xl text-brand-navy mb-3">
+              Our Brands &amp; Trademarks
+            </h2>
+            <p className="font-body text-sm uppercase tracking-widest text-brand-orange">
+              Committed to Excellence and Global Humanity
+            </p>
+          </motion.div>
+
+          <motion.div
+            variants={stagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-2 gap-8"
+          >
+            {/* Global Humanity Logo */}
+            <motion.div
+              variants={item}
+              className="flex items-center justify-center p-8 bg-white"
+              style={{ border: '2px solid rgba(214,186,116,0.35)' }}
+            >
+              <Image
+                src="/photos/Global_Charity.jpeg"
+                alt="Wheels of Peace, Prosperity, Happiness & Healthcare - Global Humanity"
+                width={600}
+                height={400}
+                className="w-full h-auto object-contain max-h-[300px]"
+              />
+            </motion.div>
+
+            {/* Roots Graphics & Art Hutch Logo */}
+            <motion.div
+              variants={item}
+              className="flex items-center justify-center p-8 bg-white"
+              style={{ border: '2px solid rgba(214,186,116,0.35)' }}
+            >
+              <Image
+                src="/photos/Art_Hutch.jpeg"
+                alt="Roots Graphics & Art Hutch - Always Creating Value for Art"
+                width={600}
+                height={400}
+                className="w-full h-auto object-contain max-h-[300px]"
+              />
+            </motion.div>
           </motion.div>
         </div>
       </section>

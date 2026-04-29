@@ -64,17 +64,49 @@ const jayantAwards = [
   'Biographics in Volume-5 Asian / American Who’s Who',
 ];
 
-const mbParagAwards = [
-  '7th All India Graphic Exhibition, Hyderabad (1982)',
-  'Maharashtra State Exhibition of Art, Bombay (1993)',
-  'Chitrakala Mahavidhyalaya, Nagpur (1983)',
-  'All India Art Exhibition, Mahakoshal Kala Parishad, Raipur (1984–1985)',
-  'Graphic 83 All India Exhibition of Prints, Chandigarh (1984)',
-  'Maharashtra State Silver Jubilee Exhibition, Bombay (1985)',
-  'All India Exhibition of Art, Manipur (1985)',
-  'Certificate of Merit, All India Youth Art Exhibition, Calcutta (1987)',
-  'Biographics in Volume-5 Asian / American Who’s Who',
-  'Bhartiya Kala Puraskar 2018',
+const mbParagAwards = [];
+
+const specialAchievements = [
+  {
+    title: 'Meeting with the Birla Family',
+    content: 'M. B. Parag spent a whole day with Late Legendary Philanthropist Shri. Basant Kumar Birla Ji & Mrs. Sarla Birla Ji, and their child Kumar Mangalam Birla (wearing Choti), performing continuous Abhishek on Lord Shiva in 1997-98 at their Prabhadevi Bungalow in Mumbai.'
+  },
+  {
+    title: 'Jayant Mairal Paintings in Birla Collection',
+    content: 'The Birla family purchased 2 exquisite Canvas Abstract Paintings of Jayant Mairal during this period. These works are now part of the permanent collection of Late Philanthropist Shri. Basant Kumar Birla Ji & Mrs. Sarla Birla Ji. This acquisition has opened doors to the Aditya Birla Group and Kumar Mangalam Birla Ji.'
+  },
+  {
+    title: 'Anand Mahindra\'s Acquisition',
+    content: 'Shri. Anand Mahindra Ji purchased 2 Paintings of Jayant Mairal outside of Birla Art Gallery in 1997-98, specifically for his Bedroom. During this transaction, Shri. Anand Mahindra Ji expressed that these paintings are "Marvelous" and valued the works at a minimum of Rs. 1-1.5 Lakhs during 1997-98.'
+  }
+];
+
+const paragProfessionalHighlights = [
+  '36 years in Art Paintings & Fine Art Industry',
+  'Artist, Art Consultant, Art Promoter, Art Organizer & World Conceptualist',
+  'Organized several exhibitions in India',
+  'Valuations done for Rs. 650/- crores till date',
+  'Took Interviews of Late Former P.M. V. P. Singh of India who had offered 2 days specifically to M. B. Parag',
+  'First Citizen of India who performed "Achal Bharai" Programme of Former President of India Smt. Pratibha Tai Patil Shekhawat on 25th September 2007 at Rashtrapati Bhawan, New Delhi',
+  'Due to immense experience & decades of research – have created new innovative concept - Launching 1st time in the World',
+  'Aims for genuine Charities for the innovation, Progress, Peace, Achievements, Prosperity & to satisfy thrust & hungers of India and worldwide',
+  'Charities for WHO, community Kitchens worldwide through Ratan Tata Trust, farmers, etc.',
+  'Helping United Nations (UN) for Natural calamities',
+  'Great Booster in the Field of: (1) Thrust & Hunger (2) Education & Research for Students (3) Sports (4) Health by Creating Multi-specialty Hospitals & Cancer Hospitals in Tribal & Rural Areas (5) Creating new Jobs for Youth & Senior Citizens (6) Senior Citizens Old Age Homes for the Needy & Poorest of Poor',
+];
+
+const exhibitions = [
+  'Paintings & Artifacts Group Show "Pancham Sparsh" at Nagpur, 1991',
+  'Group show at Y. B. Chawan Art Gallery, Nariman Point, Mumbai, 1992',
+  'Group show at Y. B. Chawan Art Gallery, Nariman Point, Mumbai, 1993',
+  'Pre-Opening of Leela Art Gallery, Leela Hotel, Marol, Mumbai, 1993',
+  'Solo Art Exhibition of renowned Artist Jayant Bhalchandra Mairal at Jehangir Art Gallery, Kala Ghoda, Mumbai, 1995',
+  'V. N. Designs Art Gallery, Sadar, Nagpur, 1996',
+  'MSCI Charity Exhibition of Paintings at J. J. School of Arts, Mumbai, 1997',
+  'Hotel Clark Khajuraho jointly with Jayant Bhalchandra Mairal, 1999',
+  'Bajaj Art Gallery, Group Exhibition, Nariman Point, Mumbai, 2000',
+  'ROOTS GRAPHICS ART GALLERY, Nagpur, 2010',
+  'ROOTS GRAPHICS ART GALLERY, Nagpur, 2015',
 ];
 
 const socialInitiatives = [
@@ -375,7 +407,7 @@ export default function AboutPage() {
             </motion.div>
           </div>
 
-          {/* Awards list */}
+          {/* Special Achievements */}
           <motion.div
             variants={stagger}
             initial="hidden"
@@ -387,17 +419,77 @@ export default function AboutPage() {
               variants={fadeUp}
               className="font-display text-3xl text-brand-navy text-center mb-8"
             >
-              Awards &amp; Recognitions
+              Special Achievements
             </motion.h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {mbParagAwards.map((award) => (
+            <div className="grid grid-cols-1 gap-6">
+              {specialAchievements.map((achievement) => (
                 <motion.div
-                  key={award}
+                  key={achievement.title}
+                  variants={fadeUp}
+                  className="p-6"
+                  style={{
+                    background: 'rgba(16, 42, 31, 0.92)',
+                    border: '1px solid rgba(201,168,76,0.3)',
+                  }}
+                >
+                  <h4 className="font-display text-xl text-brand-navy mb-2">{achievement.title}</h4>
+                  <p className="font-body text-sm text-gray-700 leading-relaxed">{achievement.content}</p>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Professional Highlights */}
+          <motion.div
+            variants={stagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="mt-20"
+          >
+            <motion.h3
+              variants={fadeUp}
+              className="font-display text-3xl text-brand-navy text-center mb-8"
+            >
+              Professional Highlights
+            </motion.h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {paragProfessionalHighlights.map((highlight) => (
+                <motion.div
+                  key={highlight}
                   variants={fadeUp}
                   className="bg-brand-cream px-5 py-4 flex items-start gap-3 border border-[#D6BA74]"
                 >
                   <span className="text-brand-gold flex-shrink-0 mt-0.5">◆</span>
-                  <span className="font-body text-sm text-gray-700 leading-relaxed">{award}</span>
+                  <span className="font-body text-sm text-gray-700 leading-relaxed">{highlight}</span>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Exhibition History */}
+          <motion.div
+            variants={stagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="mt-20"
+          >
+            <motion.h3
+              variants={fadeUp}
+              className="font-display text-3xl text-brand-navy text-center mb-8"
+            >
+              Exhibition History
+            </motion.h3>
+            <div className="grid grid-cols-1 gap-3">
+              {exhibitions.map((exhibition, idx) => (
+                <motion.div
+                  key={idx}
+                  variants={fadeUp}
+                  className="flex items-start gap-4 pb-3 border-b border-gray-200 last:border-b-0"
+                >
+                  <span className="text-brand-orange font-display font-bold flex-shrink-0 text-lg mt-0.5">{idx + 1}.</span>
+                  <span className="font-body text-gray-700 leading-relaxed pt-0.5">{exhibition}</span>
                 </motion.div>
               ))}
             </div>
@@ -732,6 +824,95 @@ export default function AboutPage() {
           >
             All paintings come with full documentation. We create reputable owners of art.
           </motion.p>
+
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════
+          SECTION 8 — ANCESTRAL LEGACY & HERITAGE
+      ══════════════════════════════════════════════════════════ */}
+      <section className="bg-[#102A1F] py-24 px-6 md:px-12">
+        <div className="max-w-5xl mx-auto">
+
+          <motion.div
+            variants={stagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="flex flex-col items-center text-center gap-4 mb-16"
+          >
+            <motion.p variants={fadeUp} className="font-body text-xs uppercase tracking-widest text-brand-gold">
+              Ancestral Heritage
+            </motion.p>
+            <motion.h2 variants={fadeUp} className="font-display text-4xl md:text-5xl text-brand-navy">
+              Legacy of Service &amp; Philanthropy
+            </motion.h2>
+            <motion.div variants={fadeUp} className="w-16 h-px bg-brand-gold" />
+          </motion.div>
+
+          <motion.div
+            variants={stagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-2 gap-8"
+          >
+            {/* Ancestral Heritage */}
+            <motion.div
+              variants={fadeUp}
+              className="p-8"
+              style={{
+                background: 'rgba(255, 255, 255, 0.06)',
+                border: '1px solid rgba(201,168,76,0.3)',
+              }}
+            >
+              <h3 className="font-display text-2xl text-brand-navy mb-4">
+                Ancestral Heritage
+              </h3>
+              <p className="font-body text-sm text-gray-300 leading-relaxed mb-4">
+                The legacy of service runs deep in the Mairal family. M. B. Parag&apos;s ancestor, <span className="text-brand-gold font-semibold">Gopal Rao Mairal</span>, served as the Dewan of Vadodara from <span className="text-brand-gold font-semibold">March 22, 1871 to 1872</span>, a position of great responsibility and trust during the princely state era.
+              </p>
+              <p className="font-body text-sm text-gray-300 leading-relaxed">
+                This pioneering spirit of serving the community and contributing to society has been passed down through generations, inspiring M. B. Parag&apos;s own vision of using art and philanthropy as forces for global change.
+              </p>
+              <a
+                href="https://share.google/QquTZUE3toJL6vvNX"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block mt-6 font-body text-sm uppercase tracking-widest text-brand-orange hover:text-brand-gold transition-colors duration-200 flex items-center gap-2"
+              >
+                Learn More <span aria-hidden="true">→</span>
+              </a>
+            </motion.div>
+
+            {/* Charitable Contribution */}
+            <motion.div
+              variants={fadeUp}
+              className="p-8"
+              style={{
+                background: 'rgba(255, 255, 255, 0.06)',
+                border: '1px solid rgba(201,168,76,0.3)',
+              }}
+            >
+              <h3 className="font-display text-2xl text-brand-navy mb-4">
+                Spiritual Contribution
+              </h3>
+              <p className="font-body text-sm text-gray-300 leading-relaxed mb-4">
+                M. B. Parag has continued this legacy of giving by contributing to the construction and support of the <span className="text-brand-gold font-semibold">Shri Dhundiraj Ganpati Temple</span> through generous donations and charitable initiatives. This sacred temple stands as a testament to the family&apos;s commitment to spiritual and community welfare.
+              </p>
+              <p className="font-body text-sm text-gray-300 leading-relaxed">
+                The temple serves as a beacon of faith and prosperity for the community, embodying the values of generosity, devotion, and social responsibility that have defined the Mairal family for generations.
+              </p>
+              <a
+                href="https://share.google/VKPcJ8FWRFKYsSx3P"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block mt-6 font-body text-sm uppercase tracking-widest text-brand-orange hover:text-brand-gold transition-colors duration-200 flex items-center gap-2"
+              >
+                Discover More <span aria-hidden="true">→</span>
+              </a>
+            </motion.div>
+          </motion.div>
 
         </div>
       </section>

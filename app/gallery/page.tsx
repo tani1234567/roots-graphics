@@ -11,9 +11,7 @@ import { paintings } from '@/data/paintings';
 type Painting = (typeof paintings)[number];
 
 const FILTERS = ['All Works', 'M. B. Parag', 'Jayant B. Mairal'] as const;
-const EXCLUDED_TITLES = new Set<string>([
-  'Prosperity with Landmarks & Achievements.',
-]);
+const EXCLUDED_TITLES = new Set<string>([]);
 
 type Orientation = 'landscape' | 'portrait' | 'square' | 'unknown';
 
@@ -34,7 +32,7 @@ function getPaintingImageSrc(title: string): string | null {
   if (title === 'Softness of Piousity and Purity Forming Almighty God I.') return '/photos/Almighty_God_I.png';
   if (title === 'Germination') return '/photos/Germination.png';
   if (title === 'Prosperity with Peace') return '/photos/Prosperity_with_Peace.png';
-  if (title === 'Prosperity with Landmarks & Achievements.') return '/photos/Prosperity_with_Peace.png';
+  if (title === 'Prosperity with Landmarks & Achievements.') return '/photos/Prosperity_with_Landmarks.png';
   if (title === 'Man : Creater on Universe : Mohammad Ali Boxer.') return '/photos/Mohammad_Ali_Boxer.png';
   if (title === 'Softness of Piousity and Purity Forming Almighty God Ganesha in the Centre.') return '/photos/Almighty_God_Ganesha.png';
   if (title === 'King of Forest - Jungle.') return '/photos/King_of_Forest.png';

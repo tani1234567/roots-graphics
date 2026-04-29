@@ -150,15 +150,23 @@ export default function ContactPage() {
                 variants={fadeUp}
                 className="pl-4 border-l-2 border-brand-gold"
               >
-                <p className="font-body text-xs uppercase tracking-widest text-brand-gold mb-1">
+                <p className="font-body text-xs uppercase tracking-widest text-brand-gold mb-2">
                   Email
                 </p>
-                <a
-                  href="mailto:paragmairal123@gmail.com"
-                  className="font-body text-brand-orange hover:underline break-all"
-                >
-                  paragmairal123@gmail.com
-                </a>
+                <div className="flex flex-col gap-2">
+                  <a
+                    href="mailto:paragmairal123@gmail.com"
+                    className="font-body text-brand-orange hover:underline break-all"
+                  >
+                    paragmairal123@gmail.com
+                  </a>
+                  <a
+                    href="mailto:mbparag@rootsgraphics.com"
+                    className="font-body text-brand-orange hover:underline break-all"
+                  >
+                    mbparag@rootsgraphics.com
+                  </a>
+                </div>
               </motion.div>
 
               {/* Phone */}
