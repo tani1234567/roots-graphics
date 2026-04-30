@@ -64,8 +64,6 @@ const jayantAwards = [
   'Biographics in Volume-5 Asian / American Who’s Who',
 ];
 
-const mbParagAwards = [];
-
 const specialAchievements = [
   {
     title: 'Meeting with the Birla Family',
