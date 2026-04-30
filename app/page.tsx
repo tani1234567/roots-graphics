@@ -151,88 +151,123 @@ const storyHighlights = [
 
 const vipMoments = [
   {
+    id: 203,
+    title: 'With Padmavibhushan Shri. Ram Sutar Ji',
+    info: 'With Padmavibhusion Shri.Ram Sutar Ji M. B. PARAG alias Parag Mairal an Artist and World Conceptualist. [Image #3]',
+    src: '/vip_clicks/Padmavibhusion .jpeg',
+    orientation: 'landscape' as const,
+  },
+  {
+    id: 201,
+    title: 'Y.B. Chavan Art Gallery',
+    info: 'Y.B. Chavan Art Gallery - [Image #1]',
+    src: '/vip_clicks/Vpsingh.png',
+    orientation: 'landscape' as const,
+  },
+  {
+    id: 202,
+    title: 'Y.B. Chavan Art Gallery',
+    info: 'Y.B. Chavan Art Gallery - [Image #2]',
+    src: '/vip_clicks/Vijay_Tendulkar.png',
+    orientation: 'landscape' as const,
+  },
+  {
     id: 101,
     title: 'M. B. Parag, Janin Sayed RAZA, Sayed Haydar RAZA & Arvind Inamdar',
     info: 'From Left M. B. PARAG alias Parag Mairal, Janin Sayed RAZA, Padmashree Sayed Haydar RAZA, and Late Former DGP of Maharashtra Shri. Arvind Inamdar.',
     src: '/vip_clicks/Janin Sayed RAZA.jpeg',
+    orientation: 'landscape' as const,
   },
   {
     id: 102,
     title: 'Jayant Mairal With Padmashree Sayed Haydar RAZA',
     info: 'Jayant Mairal with Padmashree Sayed Haydar RAZA in artist meet organized by M.B. PARAG alias Parag Mairal at Nagpur.',
     src: '/vip_clicks/Sayed Haydar RAZA.jpeg',
+    orientation: 'landscape' as const,
   },
   {
     id: 1,
     title: 'Ratan Tata Ji & M. B. Parag',
     info: 'Rainbow Painting with Ratan Tata Ji & M. B. Parag Alias Parag Mairal.',
     src: '/vip_clicks/Ratan Tata Ji .jpeg',
+    orientation: 'portrait' as const,
   },
   {
     id: 2,
     title: 'Amitabh Bachchan Ji & M. B. Parag',
     info: 'Amitabh Bachchan Ji & M.B. PARAG Alias Parag Mairal.',
     src: '/vip_clicks/Amitabh Bachchan Ji.jpeg',
+    orientation: 'landscape' as const,
   },
   {
     id: 3,
     title: 'Ambassador Javier Paulinich',
     info: 'Ambassador of Peru Javier Paulinich & M. B. PARAG.',
     src: '/vip_clicks/Javier Paulinich.jpeg',
+    orientation: 'portrait' as const,
   },
   {
     id: 4,
     title: 'Ashish Shelar Ji, Arun Sabnis Ji & M. B. Parag',
     info: 'Cabinet Cultural Minister of Maharashtra Mr. Ashish Shelar Ji, Chairman of Fulora Foundations Mr. Arun Sabnis Ji & M. B. PARAG Alias Parag Mairal.',
     src: '/vip_clicks/Ashish Shelar Ji.jpeg',
+    orientation: 'landscape' as const,
   },
   {
     id: 5,
     title: 'Karsan Ghavri Ji',
     info: 'Legendary Cricket Player Shri. Karsan Ghavri Ji.',
     src: '/vip_clicks/Karsan Ghavri.jpeg',
+    orientation: 'landscape' as const,
   },
   {
     id: 6,
     title: 'Muthu Swami Iyer, M. B. Parag & Jayant Mairal',
     info: 'Guruvayur Temple M. B. PARAG Alias Parag Mairal & Former International Football Player Mr. Muthu Swami Iyer and Jayant Mairal too.',
     src: '/vip_clicks/Muthu Swami Iyer.jpeg',
+    orientation: 'portrait' as const,
   },
   {
     id: 7,
     title: 'Dilip Vengsarkar & M. B. Parag',
     info: 'Legendary Cricket Player Shri. Dilip Vengsarkar & M. B. PARAG Alias Parag Mairal.',
     src: '/vip_clicks/Dilip Vengsarkar.jpeg',
+    orientation: 'portrait' as const,
   },
   {
     id: 8,
     title: 'Hema Malini Ji',
     info: 'Legendary Film Actress Mrs. Hema Malini Ji.',
     src: '/vip_clicks/Hema Malini maam.jpeg',
+    orientation: 'portrait' as const,
   },
   {
     id: 9,
     title: 'Minal Potnis',
     info: 'Minal Potnis.',
     src: '/vip_clicks/Minal Potnis.jpeg',
+    orientation: 'portrait' as const,
   },
   {
     id: 10,
     title: 'Tej Sapru Ji',
     info: 'Tej Sapru Ji.',
     src: '/vip_clicks/Tej_Sapru.jpeg',
+    orientation: 'portrait' as const,
   },
   {
     id: 11,
     title: 'Varsha Usgaonkar',
     info: 'Film Actress Varsha Usgaonkar.',
     src: '/vip_clicks/Varsha Usgaonkar.jpeg',
+    orientation: 'portrait' as const,
   },
   {
     id: 12,
     title: 'Prem Chopra Ji, Mithun Singh Ji & M. B. Parag',
     info: 'Mr. Prem Chopra Ji, Artist Mithun Singh Ji & M. B. PARAG Alias Parag Mairal.',
     src: '/vip_clicks/Prem Chopra Ji.jpeg',
+    orientation: 'portrait' as const,
   },
 ];
 
@@ -660,23 +695,20 @@ export default function HomePage() {
             </p>
           </motion.div>
 
-          <motion.div
-            variants={stagger}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-          >
+          <div className="columns-1 sm:columns-2 lg:columns-3 gap-6">
             {vipMoments.map((moment) => (
               <motion.div
                 key={moment.id}
                 variants={item}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
                 whileHover={{ y: -4, transition: { duration: 0.25 } }}
-                className="bg-[#183A2B] transition-shadow duration-300 hover:shadow-[0_0_20px_rgba(201,168,76,0.25)]"
+                className="break-inside-avoid mb-6 bg-[#183A2B] transition-shadow duration-300 hover:shadow-[0_0_20px_rgba(201,168,76,0.25)]"
                 style={{ border: '1px solid rgba(214,186,116,0.35)' }}
               >
                 <div
-                  className="w-full aspect-[3/4] relative"
+                  className={`w-full relative ${moment.orientation === 'landscape' ? 'aspect-[4/3]' : 'aspect-[3/4]'}`}
                   style={{
                     background: '#FFFFFF',
                     borderBottom: '2px solid rgba(201,168,76,0.25)',
@@ -696,7 +728,7 @@ export default function HomePage() {
                 </div>
               </motion.div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
