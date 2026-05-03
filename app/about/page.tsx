@@ -76,6 +76,10 @@ const specialAchievements = [
   {
     title: 'Anand Mahindra\'s Acquisition',
     content: 'Shri. Anand Mahindra Ji purchased 2 Paintings of Jayant Mairal outside of Birla Art Gallery in 1997-98, specifically for his Bedroom. During this transaction, Shri. Anand Mahindra Ji expressed that these paintings are "Marvelous" and valued the works at a minimum of Rs. 1-1.5 Lakhs during 1997-98.'
+  },
+  {
+    title: 'Felicitation with Padmavibhushan Shri Ram Sutar',
+    content: 'Late Padmavibhushan Shri Ram Sutar, the legendary sculptor, was felicitated for his monumental achievement in creating the world\'s highest statue of Bharat Ratna Sardar Vallabhbhai Patel at Vadodara. In a remarkable celebration of artistic excellence, M.B. Parag was honoured alongside this master sculptor for his visionary contributions as a world-renowned artist and conceptualist, acknowledging his profound impact on the global art landscape.'
   }
 ];
 

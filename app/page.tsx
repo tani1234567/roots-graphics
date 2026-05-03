@@ -73,6 +73,7 @@ const collectors = [
   { name: 'Plus TV Channel', role: 'Media' },
   { name: 'Architect Mr. Hafeez Contractor', role: 'Mumbai' },
   { name: 'Mrs. Rubi Anand', role: 'Director' },
+  { name: 'Bank of America : In 1994.', role: 'International Bank' },
 ];
 
 const pillars = [
@@ -130,7 +131,7 @@ const storyHighlights = [
   {
     year: '1980',
     title: 'Encounter with Indira Gandhi Ji',
-    description: 'Met India\'s former Prime Minister Indira Gandhi in 12th standard. Spent nearly ten minutes in conversation, shared admiration for her leadership, and received her autograph.',
+    description: 'During my 12th standard, I had the profound privilege of meeting India\'s Prime Minister Indira Gandhi. Our conversation, lasting nearly ten minutes, became a defining moment in my life. I shared with her my admiration for her remarkable leadership and expressed that she stood as "number one in the world"—a sentiment rooted in my deep respect for her vision and integrity. When she asked why, I explained how her leadership exemplified excellence that few could match globally. I also mentioned my collection of autographs from legendary cricketers including Lala Amarnath, Sunil Gavaskar, and Bishan Singh Bedi, and made a light-hearted comparison, placing Atal Bihari Vajpayee as second, admiring his powerful oratory and respectful demeanor. She responded with warmth and encouragement, offering me her autograph with great grace. This encounter was all the more meaningful given my father\'s—Late Prof. Shri Bhalchandra Bhaskar Mairal\'s—close association with her office, where he drafted important state correspondence. Though she had once offered him an MLA ticket in recognition of his intellect and integrity, he respectfully declined, as his calling lay in academics and service, not politics.',
   },
   {
     year: '1991',
@@ -152,50 +153,71 @@ const storyHighlights = [
 const vipMoments = [
   {
     id: 203,
-    title: 'With Padmavibhushan Shri. Ram Sutar Ji',
-    info: 'With Padmavibhusion Shri.Ram Sutar Ji M. B. PARAG alias Parag Mairal an Artist and World Conceptualist. [Image #3]',
+    title: 'Padmavibhushan Shri. Ram Sutar Ji',
+    info: 'With Padmavibhusion Shri.Ram Sutar Ji Parag Mairal an Artist and World Conceptualist.',
     src: '/vip_clicks/Padmavibhusion .jpeg',
+    orientation: 'landscape' as const,
+  },
+  {
+    id: 204,
+    title: 'Padmavibhushan Ram Sutar With Artistic Luminaries',
+    info: 'Artist Jayant Mairal, Dr. Rajendra Jadhav, M.B. Parag, Padmavibhushan Shri Ram Sutar, and Raja Wagh Ji at an exclusive artistic gathering.',
+    src: '/vip_clicks/Artist Jayant Mairal.jpeg',
+    orientation: 'landscape' as const,
+  },
+  {
+    id: 205,
+    title: 'Meeting With Distinguished Artists & Cultural Icons',
+    info: 'Jayant Mairal, Dr. Rajendra Jadhav, Parag Mairal, Padmavibhushan Ram Sutar, and Raja Wagh Ji in a momentous artistic celebration.',
+    src: '/vip_clicks/Dr. Rajendra Jadhav.jpeg',
+    orientation: 'landscape' as const,
+  },
+  {
+    id: 206,
+    title: 'M.B. Parag With Ram Sutar, Rajkumar Sharma & Raja Wagh Ji',
+    info: 'M.B. Parag, Padmavibhushan Shri Ram Sutar, renowned artist Rajkumar Sharma, and cultural patron Raja Wagh Ji at an esteemed artistic forum.',
+    src: '/vip_clicks/Raja Wagh Ji.jpeg',
     orientation: 'landscape' as const,
   },
   {
     id: 201,
     title: 'Y.B. Chavan Art Gallery',
-    info: 'Y.B. Chavan Art Gallery - [Image #1]',
+    info: 'Y.B. Chavan Art Gallery',
     src: '/vip_clicks/Vpsingh.png',
     orientation: 'landscape' as const,
   },
   {
     id: 202,
     title: 'Y.B. Chavan Art Gallery',
-    info: 'Y.B. Chavan Art Gallery - [Image #2]',
+    info: 'Y.B. Chavan Art Gallery',
     src: '/vip_clicks/Vijay_Tendulkar.png',
     orientation: 'landscape' as const,
   },
   {
     id: 101,
     title: 'M. B. Parag, Janin Sayed RAZA, Sayed Haydar RAZA & Arvind Inamdar',
-    info: 'From Left M. B. PARAG alias Parag Mairal, Janin Sayed RAZA, Padmashree Sayed Haydar RAZA, and Late Former DGP of Maharashtra Shri. Arvind Inamdar.',
+    info: 'From Left Parag Mairal, Janin Sayed RAZA, Padmashree Sayed Haydar RAZA, and Late Former DGP of Maharashtra Shri. Arvind Inamdar.',
     src: '/vip_clicks/Janin Sayed RAZA.jpeg',
     orientation: 'landscape' as const,
   },
   {
     id: 102,
     title: 'Jayant Mairal With Padmashree Sayed Haydar RAZA',
-    info: 'Jayant Mairal with Padmashree Sayed Haydar RAZA in artist meet organized by M.B. PARAG alias Parag Mairal at Nagpur.',
+    info: 'Jayant Mairal with Padmashree Sayed Haydar RAZA in artist meet organized by Parag Mairal at Nagpur.',
     src: '/vip_clicks/Sayed Haydar RAZA.jpeg',
     orientation: 'landscape' as const,
   },
   {
     id: 1,
     title: 'Ratan Tata Ji & M. B. Parag',
-    info: 'Rainbow Painting with Ratan Tata Ji & M. B. Parag Alias Parag Mairal.',
+    info: 'Rainbow Painting with Ratan Tata Ji & Parag Mairal.',
     src: '/vip_clicks/Ratan Tata Ji .jpeg',
     orientation: 'portrait' as const,
   },
   {
     id: 2,
     title: 'Amitabh Bachchan Ji & M. B. Parag',
-    info: 'Amitabh Bachchan Ji & M.B. PARAG Alias Parag Mairal.',
+    info: 'Amitabh Bachchan Ji & Parag Mairal.',
     src: '/vip_clicks/Amitabh Bachchan Ji.jpeg',
     orientation: 'landscape' as const,
   },
@@ -209,7 +231,7 @@ const vipMoments = [
   {
     id: 4,
     title: 'Ashish Shelar Ji, Arun Sabnis Ji & M. B. Parag',
-    info: 'Cabinet Cultural Minister of Maharashtra Mr. Ashish Shelar Ji, Chairman of Fulora Foundations Mr. Arun Sabnis Ji & M. B. PARAG Alias Parag Mairal.',
+    info: 'Cabinet Cultural Minister of Maharashtra Mr. Ashish Shelar Ji, Chairman of Fulora Foundations Mr. Arun Sabnis Ji & Parag Mairal.',
     src: '/vip_clicks/Ashish Shelar Ji.jpeg',
     orientation: 'landscape' as const,
   },
@@ -223,14 +245,14 @@ const vipMoments = [
   {
     id: 6,
     title: 'Muthu Swami Iyer, M. B. Parag & Jayant Mairal',
-    info: 'Guruvayur Temple M. B. PARAG Alias Parag Mairal & Former International Football Player Mr. Muthu Swami Iyer and Jayant Mairal too.',
+    info: 'Guruvayur Temple Parag Mairal & Former International Football Player Mr. Muthu Swami Iyer and Jayant Mairal too.',
     src: '/vip_clicks/Muthu Swami Iyer.jpeg',
     orientation: 'portrait' as const,
   },
   {
     id: 7,
     title: 'Dilip Vengsarkar & M. B. Parag',
-    info: 'Legendary Cricket Player Shri. Dilip Vengsarkar & M. B. PARAG Alias Parag Mairal.',
+    info: 'Legendary Cricket Player Shri. Dilip Vengsarkar & Parag Mairal.',
     src: '/vip_clicks/Dilip Vengsarkar.jpeg',
     orientation: 'portrait' as const,
   },
@@ -265,7 +287,7 @@ const vipMoments = [
   {
     id: 12,
     title: 'Prem Chopra Ji, Mithun Singh Ji & M. B. Parag',
-    info: 'Mr. Prem Chopra Ji, Artist Mithun Singh Ji & M. B. PARAG Alias Parag Mairal.',
+    info: 'Mr. Prem Chopra Ji, Artist Mithun Singh Ji & Parag Mairal.',
     src: '/vip_clicks/Prem Chopra Ji.jpeg',
     orientation: 'portrait' as const,
   },

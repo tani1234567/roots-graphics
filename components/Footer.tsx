@@ -40,7 +40,7 @@ export default function Footer() {
             Excellence Needs Roots
           </span>
           <p className="font-body text-sm text-gray-600 leading-relaxed mt-3">
-            Fine Art Consultants · Art Promoters · Organizers · Valuers · Advisors · World Conceptualist
+            Fine Art Consultants · Art Promoters · Organizers · Valuers · Advisors · Global Fine Arts Organization
           </p>
         </div>
 
