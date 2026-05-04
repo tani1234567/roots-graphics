@@ -1,42 +1,54 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 
+const homeSections = [
+  { href: '/letters-from-dignitaries', label: 'Letters From Dignitaries & Icons' },
+  { href: '/the-collection',           label: 'The Collection' },
+  { href: '/collected-celebrated',     label: 'Collected & Celebrated By' },
+  { href: '/story-board-of-india',     label: 'Story Board of India' },
+  { href: '/rashtrapati-bhavan-visit', label: 'Rashtrapati Bhavan Visit' },
+];
+
 const navLinks = [
-  { href: '/', label: 'Home' },
   { href: '/gallery', label: 'Gallery' },
-  { href: '/about', label: 'About' },
+  { href: '/about',   label: 'About' },
   { href: '/contact', label: 'Contact' },
 ];
 
 export default function Navbar() {
-  const [menuOpen, setMenuOpen]   = useState(false);
-  const [scrolled, setScrolled]   = useState(false);
+  const [menuOpen, setMenuOpen]         = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [scrolled, setScrolled]         = useState(false);
   const pathname = usePathname();
   const isHome   = pathname === '/';
+  const dropRef  = useRef<HTMLLIElement>(null);
 
-  const isActiveRoute = (href: string) => {
-    if (href === '/') return pathname === '/';
-    return pathname === href || pathname.startsWith(`${href}/`);
-  };
+  const isActiveRoute = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
 
-  useEffect(() => {
-    setMenuOpen(false);
-  }, [pathname]);
+  useEffect(() => { setMenuOpen(false); setDropdownOpen(false); }, [pathname]);
 
-  // Track scroll position to toggle header transparency
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 55);
-    handler(); // set initial value
+    handler();
     window.addEventListener('scroll', handler, { passive: true });
     return () => window.removeEventListener('scroll', handler);
   }, []);
 
-  // Transparent only on the home page when at the very top
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (dropRef.current && !dropRef.current.contains(e.target as Node)) {
+        setDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   const isTransparent = isHome && !scrolled;
 
   return (
@@ -81,6 +93,62 @@ export default function Navbar() {
 
         {/* Desktop Nav */}
         <ul className="hidden md:flex items-center gap-8">
+          {/* Home with dropdown */}
+          <li ref={dropRef} className="relative">
+            <button
+              onClick={() => setDropdownOpen((v) => !v)}
+              className={`relative group font-body text-sm uppercase tracking-wider pb-0.5 transition-colors duration-300 flex items-center gap-1 ${
+                isHome ? 'text-brand-orange' : 'text-brand-navy'
+              }`}
+            >
+              Home
+              <svg
+                width="10" height="10" viewBox="0 0 10 10" fill="none"
+                className={`transition-transform duration-200 mt-px ${dropdownOpen ? 'rotate-180' : ''}`}
+              >
+                <path d="M1 3l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+              <span className={`absolute bottom-0 left-0 h-px bg-brand-orange w-full transition-transform duration-300 origin-left ${isHome ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`} />
+            </button>
+
+            <AnimatePresence>
+              {dropdownOpen && (
+                <motion.ul
+                  initial={{ opacity: 0, y: -8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.2 }}
+                  className="absolute top-full left-0 mt-3 min-w-[260px] bg-brand-cream border border-[#D6BA74]/60 shadow-lg z-50 py-2"
+                >
+                  <li className="px-4 py-2">
+                    <Link
+                      href="/"
+                      onClick={() => setDropdownOpen(false)}
+                      className="font-body text-xs uppercase tracking-widest text-brand-gold hover:text-brand-orange transition-colors duration-200"
+                    >
+                      ↑ Back to Home
+                    </Link>
+                  </li>
+                  <li className="mx-4 my-1 h-px bg-[#D6BA74]/40" />
+                  {homeSections.map((s) => (
+                    <li key={s.href}>
+                      <Link
+                        href={s.href}
+                        onClick={() => setDropdownOpen(false)}
+                        className={`block px-4 py-2.5 font-body text-sm hover:bg-[#D6BA74]/15 hover:text-brand-orange transition-colors duration-200 ${
+                          pathname === s.href ? 'text-brand-orange' : 'text-brand-navy'
+                        }`}
+                      >
+                        {s.label}
+                      </Link>
+                    </li>
+                  ))}
+                </motion.ul>
+              )}
+            </AnimatePresence>
+          </li>
+
+          {/* Other links */}
           {navLinks.map(({ href, label }) => {
             const isActive = isActiveRoute(href);
             return (
@@ -124,7 +192,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -24 }}
             transition={{ duration: 0.35, ease: 'easeOut' }}
-            className="fixed inset-0 z-[100] bg-brand-cream flex flex-col items-center justify-center"
+            className="fixed inset-0 z-[100] bg-brand-cream flex flex-col items-center justify-center overflow-y-auto py-16"
           >
             <button
               className="absolute top-6 right-6 text-brand-navy text-4xl leading-none hover:text-brand-orange transition-colors duration-300"
@@ -147,7 +215,38 @@ export default function Navbar() {
               />
             </div>
 
-            <ul className="flex flex-col items-center gap-10">
+            <ul className="flex flex-col items-center gap-8 w-full px-8">
+              {/* Home link */}
+              <li className="text-center">
+                <Link
+                  href="/"
+                  onClick={() => setMenuOpen(false)}
+                  className={`font-display text-5xl uppercase tracking-[0.15em] transition-colors duration-300 ${
+                    isHome ? 'text-brand-orange' : 'text-brand-navy hover:text-brand-orange'
+                  }`}
+                >
+                  Home
+                </Link>
+                {/* Section sub-links */}
+                <ul className="mt-4 flex flex-col items-center gap-3">
+                  {homeSections.map((s) => (
+                    <li key={s.href}>
+                      <Link
+                        href={s.href}
+                        onClick={() => setMenuOpen(false)}
+                        className={`font-body text-sm uppercase tracking-widest transition-colors duration-200 ${
+                          pathname === s.href ? 'text-brand-orange' : 'text-brand-navy hover:text-brand-orange'
+                        }`}
+                      >
+                        {s.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+
+              <li className="w-24 h-px bg-[#D6BA74]/50" />
+
               {navLinks.map(({ href, label }) => {
                 const isActive = isActiveRoute(href);
                 return (

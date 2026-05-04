@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { motion, useScroll, useTransform, useMotionValue } from 'framer-motion';
 import type { MotionValue } from 'framer-motion';
-import { paintings } from '@/data/paintings';
+
 
 // ── Variants ───────────────────────────────────────────────────────────────
 
@@ -30,52 +30,6 @@ const item = {
 
 // ── Data ───────────────────────────────────────────────────────────────────
 
-const collectors = [
-  { name: 'Late Legendary Philanthropist Shri Basant Kumar Birla Ji', role: 'Notable Patron' },
-  { name: 'Kotak Finance Limited, Mr. Uday Kotak', role: 'Mumbai' },
-  { name: 'Swaraj Shipping, Surinder Paul', role: 'Mumbai' },
-  { name: 'Legendary Late Film Star Vinod Khanna Ji', role: 'Notable Patron' },
-  { name: 'Lloyds Steel, Mukesh Gupta, Rakesh Gupta', role: 'Mumbai' },
-  { name: 'Lloyds Finance Limited', role: 'Mumbai' },
-  { name: 'Leela Penta Hotels (Now Leela Hotels)', role: 'Mumbai' },
-  { name: 'Viceroy Palace Heights Hotels', role: 'Hyderabad' },
-  { name: 'Director General of Police', role: 'Mumbai, Maharashtra' },
-  { name: 'Bank of India', role: 'H.O. Nariman Point, Mumbai' },
-  { name: 'Switzerland', role: 'International Collection' },
-  { name: 'Germany', role: 'International Collection' },
-  { name: 'Bahrain', role: 'International Collection' },
-  { name: 'DGP Anti-corruption', role: 'Mumbai' },
-  { name: 'Police Officers Mess', role: 'Worli, Mumbai' },
-  { name: 'Regency Hotel', role: 'Mumbai' },
-  { name: 'Medley Pharmaceuticals Ltd', role: 'Mumbai' },
-  { name: 'Lupin Laboratories Ltd', role: 'Mumbai' },
-  { name: 'Elder Pharmaceuticals Ltd', role: 'Mumbai' },
-  { name: 'Neco Group, Late Shri Basantlal Shaw Jaiswal', role: 'Nagpur' },
-  { name: 'Navneet Automobiles, Mr. Bharat Seth', role: 'Nagpur' },
-  { name: 'Architect Mr. Ashok Mokha Ji', role: 'Nagpur' },
-  { name: 'Mr. Ghatate', role: 'Civil Lines, Nagpur' },
-  { name: 'Amin Tyres', role: 'Nagpur' },
-  { name: 'Former Minister Shri Satish Chaturvedi Ji', role: 'Nagpur' },
-  { name: 'Late Former MLA Madhukar Wasnik', role: 'Notable Patron' },
-  { name: 'Mansingh Hotel', role: 'Nagpur' },
-  { name: 'Evershine Builders', role: 'Mumbai' },
-  { name: 'Dr. Sunil Mirpurry', role: 'Warden Road, Mumbai' },
-  { name: 'Asha Bhosle', role: 'Mumbai' },
-  { name: 'T Series, Kishan Kumar', role: 'Mumbai' },
-  { name: 'Malmo Exports, Mr. Imtiaz Malkani', role: 'Mumbai' },
-  { name: 'Pinakin Patel, Interior Designers', role: 'Alibagh' },
-  { name: 'Usha Mirchandani', role: 'Warden Road, Mumbai' },
-  { name: 'Architect Mr. Zahir Cassum, Talati Panthaky Associates Pvt Ltd', role: 'Mumbai' },
-  { name: 'Architect Mr. Naushir Devetri, Talati Panthaky Partners LLP', role: 'Mumbai' },
-  { name: 'Jain Irrigation', role: 'Jalgaon' },
-  { name: 'Art Director of Jain Irrigation & Jain Pipes Mr. Vikas Malhara', role: 'Notable Patron' },
-  { name: 'ATN TV Channel', role: 'Mumbai' },
-  { name: 'Plus TV Channel', role: 'Media' },
-  { name: 'Architect Mr. Hafeez Contractor', role: 'Mumbai' },
-  { name: 'Mrs. Rubi Anand', role: 'Director' },
-  { name: 'Bank of America : In 1994.', role: 'International Bank' },
-];
-
 const pillars = [
   {
     icon: '◈',
@@ -94,61 +48,6 @@ const pillars = [
   },
 ];
 
-const presidentialVisitPhotos = [
-  {
-    title: 'Traditional Achal Bharai to the President',
-    description: 'M.B. Parag performs traditional Achal Bharai to the President Shri. Pratibha Tai Patil on occasion of Sharad Purnima',
-    src: '/vip_clicks/Achal Bharai.png',
-  },
-  {
-    title: 'Presenting to the President\'s Spouse',
-    description: 'M.B. Parag giving traditional Shawl & Shrifal (Coconut) to the Hon. President\'s spouse Dr. Devisingh Shekawat',
-    src: '/vip_clicks/President\'s spous.png',
-  },
-  {
-    title: 'Presenting to the President\'s Son',
-    description: 'M.B. Parag giving traditional Shawl & Shrifal (Coconut) to the Hon. President\'s son Mr. Rao Saheb Shekawat',
-    src: '/vip_clicks/President\'s son.png',
-  },
-  {
-    title: 'Gifting Gau Mata (Cow Goddess)',
-    description: 'M.B. Parag & Jayant Mairal gifting painting titled "Gau Mata (Cow Goddess)"',
-    src: '/vip_clicks/Cow Goddess.png',
-  },
-  {
-    title: 'Gifting Magic of Peacock and Horse Power',
-    description: 'M.B. Parag & Jayant Mairal gifting painting titled "Magic of Peacock and Horse Power"',
-    src: '/vip_clicks/Peacock And Horse.png',
-  },
-];
-
-const storyHighlights = [
-  {
-    year: '1961-62',
-    title: 'Meeting Pandit Jawaharlal Nehru',
-    description: 'A 45-variety rose garland crafted by our mother was presented to Jawaharlal Nehru, Chacha Nehru, during his visit to Wardha. The flowers included rare black roses and green roses from our family garden.',
-  },
-  {
-    year: '1980',
-    title: 'Encounter with Indira Gandhi Ji',
-    description: 'During my 12th standard, I had the profound privilege of meeting India\'s Prime Minister Indira Gandhi. Our conversation, lasting nearly ten minutes, became a defining moment in my life. I shared with her my admiration for her remarkable leadership and expressed that she stood as "number one in the world"—a sentiment rooted in my deep respect for her vision and integrity. When she asked why, I explained how her leadership exemplified excellence that few could match globally. I also mentioned my collection of autographs from legendary cricketers including Lala Amarnath, Sunil Gavaskar, and Bishan Singh Bedi, and made a light-hearted comparison, placing Atal Bihari Vajpayee as second, admiring his powerful oratory and respectful demeanor. She responded with warmth and encouragement, offering me her autograph with great grace. This encounter was all the more meaningful given my father\'s—Late Prof. Shri Bhalchandra Bhaskar Mairal\'s—close association with her office, where he drafted important state correspondence. Though she had once offered him an MLA ticket in recognition of his intellect and integrity, he respectfully declined, as his calling lay in academics and service, not politics.',
-  },
-  {
-    year: '1991',
-    title: 'Walking with Rajiv Gandhi',
-    description: 'Had the honour of walking closely beside Rajiv Gandhi during his historic Sadbhavana Yatra in Nagpur, starting from Panchsheel Square.',
-  },
-  {
-    year: '1993',
-    title: 'Meeting Bal Thackeray',
-    description: 'Met the legendary leader Bal Thackeray. He wrote a special article about us in the Marathi magazine Marmik.',
-  },
-  {
-    year: '2010',
-    title: 'Supporting Global Cyclist Saurabh Dahal',
-    description: 'Supported and promoted world-tour cyclist Saurabh Dahal from Nepal. Introduced him to Nitin Gadkari and organized his journey to Gujarat with a ceremonial flag-off by Uddhav Thackeray.',
-  },
-];
 
 const vipMoments = [
   {
@@ -291,52 +190,50 @@ const vipMoments = [
     src: '/vip_clicks/Prem Chopra Ji.jpeg',
     orientation: 'portrait' as const,
   },
+  {
+    id: 301,
+    title: 'Architect Mr. Kaizar Kazi',
+    info: 'Architect: Mr. Kaizar Kazi, Formerly Associate at Architect Mr. Hafeez Contractor.',
+    src: '/vip_clicks/Kaizar Kazi.jpeg',
+    orientation: 'portrait' as const,
+  },
+  {
+    id: 302,
+    title: 'Late Prof. Kashinath Salve Ji & Jayant Mairal',
+    info: 'Late Prof. Kashinath Salve Ji & Jayant Mairal',
+    src: '/vip_clicks/Kashinath Salve.jpeg',
+    orientation: 'landscape' as const,
+  },
+  {
+    id: 303,
+    title: 'Architect Mr. Paul',
+    info: 'Architect: Mr. Paul, London, UK',
+    src: '/vip_clicks/Mr. Paul.jpeg',
+    orientation: 'portrait' as const,
+  },
+  {
+    id: 304,
+    title: 'Leading Architect Mr. Shashi Prabhu Ji',
+    info: 'Leading Architect Mr. Shashi Prabhu Ji., Wankhede Stadium, Churchgate, Mumbai.',
+    src: '/vip_clicks/Shashi Prabhu Ji.jpeg',
+    orientation: 'portrait' as const,
+  },
+  {
+    id: 305,
+    title: 'Sheriff Shri. Sadruddin Daya',
+    info: "India's Biggest Art Collector's Late Sheriff Shri. Sadruddin Daya, Chairman Dawood Shoes Limited, Mumbai",
+    src: '/vip_clicks/Sheriff Shri. Sadruddin Daya.jpeg',
+    orientation: 'portrait' as const,
+  },
+  {
+    id: 306,
+    title: 'Air India Pilot Shri. Shrikant Gondane',
+    info: 'Air India Pilot: Shri. Shrikant Gondane.',
+    src: '/vip_clicks/Shrikant Gondane.jpeg',
+    orientation: 'portrait' as const,
+  },
 ];
 
-const dignitaryLetters = [
-  {
-    id: 1,
-    title: 'Amitabh Bachchan Ji Letter (21 Nov 2025, 2:10 PM)',
-    info: '“21st of November, 2025 is the most delightful moment of my life” — letter from legendary film actor Mr. Amitabh Bachchan Ji at 2:10 PM.',
-    src: '/letters/Amitabh B.jpeg',
-  },
-  {
-    id: 2,
-    title: 'Appreciation by Late Former DGP Shri Arvind Inamdar',
-    info: 'Official appreciation letter from Late Former DGP Shri Arvind Inamdar.',
-    src: '/letters/Arvind Inamdar.jpeg',
-  },
-  {
-    id: 3,
-    title: 'Letter from Shri Banwarilal Purohit',
-    info: 'Letter from Honorable Shri Banwarilal Purohit, Editor of Daily English newspaper Hitvada and presently Governor of Punjab.',
-    src: '/letters/Banwarilal Purohit.jpeg?v=2',
-  },
-  {
-    id: 4,
-    title: 'Letter from G. K. Das (Secretary to President)',
-    info: 'Official correspondence from G. K. Das, Secretary to the President.',
-    src: '/letters/GKDas.png',
-  },
-  {
-    id: 5,
-    title: 'Letter from Amir Adam Khan (Dubai, U.A.E.)',
-    info: 'Letter from Amir Adam Khan, Dubai – U.A.E.',
-    src: '/letters/Amir Khan.jpeg',
-  },
-  {
-    id: 6,
-    title: 'Letter from Sami Khatib (Medley Pharmaceuticals Ltd)',
-    info: 'Letter from Sami Khatib, Chairman & MD of Medley Pharmaceuticals Ltd.',
-    src: '/letters/Medley.png',
-  },
-  {
-    id: 7,
-    title: 'Letter from Tata Trusts by Ratan Tata Ji',
-    info: 'Official letter from Tata Trusts by Ratan Tata Ji.',
-    src: '/letters/Tata_Trust.png',
-  },
-];
 
 // ── Floating artwork cards — hero background layer ─────────────────────────
 // group drives the scroll-parallax direction:
@@ -390,8 +287,7 @@ const floatingArtworkImages = [
 // ── Page ───────────────────────────────────────────────────────────────────
 
 export default function HomePage() {
-  const featured = paintings.slice(0, 6);
-  const heroRef  = useRef<HTMLElement>(null);
+  const heroRef = useRef<HTMLElement>(null);
 
   // ── Scroll progress through the hero section (0 = top, 1 = bottom leaving) ──
   const { scrollYProgress } = useScroll({
@@ -754,210 +650,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════
-          SECTION 4 — LETTERS FROM DIGNITARIES
-      ══════════════════════════════════════════════════════════ */}
-      <section className="bg-brand-cream py-24 px-6 md:px-12">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="text-center mb-14"
-          >
-            <p className="font-body text-xs uppercase tracking-widest text-brand-orange mb-3">
-              Official Correspondence
-            </p>
-            <h2 className="font-display text-5xl text-brand-navy mb-3">
-              Letters From Dignitaries &amp; Icons
-            </h2>
-            <p className="font-body text-sm uppercase tracking-widest text-brand-gold">
-              Appreciation letters and acknowledgements received by Roots Graphics
-            </p>
-          </motion.div>
 
-          <motion.div
-            variants={stagger}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-          >
-            {dignitaryLetters.map((letter) => (
-              <motion.div
-                key={letter.id}
-                variants={item}
-                whileHover={{ y: -4, transition: { duration: 0.25 } }}
-                className="bg-white transition-shadow duration-300 hover:shadow-[0_0_20px_rgba(201,168,76,0.25)]"
-                style={{ border: '1px solid rgba(214,186,116,0.35)' }}
-              >
-                <div
-                  className="w-full aspect-[4/3] relative"
-                  style={{
-                    background: '#FFFFFF',
-                    borderBottom: '2px solid rgba(201,168,76,0.25)',
-                  }}
-                >
-                  <Image
-                    src={letter.src}
-                    alt={letter.title}
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="object-contain p-1"
-                  />
-                </div>
-                <div className="p-5">
-                  <h3 className="font-display text-xl text-brand-navy mb-2">{letter.title}</h3>
-                  <p className="font-body text-sm text-gray-600 leading-relaxed">{letter.info}</p>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════════════════
-          SECTION 5 — FEATURED PAINTINGS GRID
-      ══════════════════════════════════════════════════════════ */}
-      <section className="bg-[#143526] py-24 px-6 md:px-12">
-        <div className="max-w-7xl mx-auto">
-
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="text-center mb-14"
-          >
-            <h2 className="font-display text-5xl text-brand-navy mb-3">The Collection</h2>
-            <p className="font-body text-sm uppercase tracking-widest text-brand-gold">
-              Selected Works by M. B. Parag &amp; Jayant B. Mairal
-            </p>
-          </motion.div>
-
-          <motion.div
-            variants={stagger}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-          >
-            {featured.map((p) => {
-              const galleryMatchedPainting =
-                p.title === 'Human Relations I'
-                  ? paintings.find((gp) => gp.title === 'Green Forest')
-                  : p.title === 'Gau Mata (Cow Goddess)'
-                    ? paintings.find((gp) => gp.title === 'Monkeys in the Jungle - Forest')
-                    : p.title === 'Magic of Peacock and Horse Power'
-                      ? paintings.find((gp) => gp.title === 'King of Forest - Jungle.')
-                      : null;
-              const displayPainting = galleryMatchedPainting ?? p;
-              const isNarsimha = p.title === 'Narsimha God with Celebrations of Victory';
-              const isCouple = p.title === 'Couple';
-              const isUnity = p.title === 'Unity';
-              const isGanesha = p.title === 'Different Forms & Faces of Lord Ganesha';
-              const isHumanRelations = p.title === 'Human Relations I';
-              const isGauMata = p.title === 'Gau Mata (Cow Goddess)';
-              const isMagicOfPeacock = p.title === 'Magic of Peacock and Horse Power';
-              return (
-              <motion.div
-                key={p.id}
-                variants={item}
-                whileHover={{ y: -4, transition: { duration: 0.25 } }}
-                className="cursor-pointer transition-shadow duration-300 hover:shadow-[0_0_20px_rgba(201,168,76,0.25)]"
-                style={{ background: '#183A2B', border: '1px solid rgba(214,186,116,0.35)' }}
-              >
-                <div
-                  className="w-full aspect-[4/3] flex items-center justify-center"
-                  style={{
-                    background:
-                      isNarsimha ||
-                      isCouple ||
-                      isUnity ||
-                      isGanesha ||
-                      isHumanRelations ||
-                      isGauMata ||
-                      isMagicOfPeacock
-                        ? '#FFFFFF'
-                        : '#1D4733',
-                    borderBottom: '2px solid rgba(201,168,76,0.25)',
-                  }}
-                >
-                  {isNarsimha ? (
-                    <Image
-                      src="/photos/Narsimha_God.png"
-                      alt={p.title}
-                      className="w-full h-full object-contain"
-                      width={1200}
-                      height={900}
-                    />
-                  ) : isCouple ? (
-                    <Image
-                      src="/photos/Couple.png"
-                      alt={p.title}
-                      className="w-full h-full object-contain"
-                      width={1200}
-                      height={900}
-                    />
-                  ) : isUnity ? (
-                    <Image
-                      src="/photos/Unity.png"
-                      alt={p.title}
-                      className="w-full h-full object-contain"
-                      width={1200}
-                      height={900}
-                    />
-                  ) : isGanesha ? (
-                    <Image
-                      src="/photos/Different_Forms_&_Faces_of_Lord_Ganesha.png"
-                      alt={p.title}
-                      className="w-full h-full object-contain"
-                      width={1200}
-                      height={900}
-                    />
-                  ) : isHumanRelations ? (
-                    <Image
-                      src="/photos/Green_Forest.png"
-                      alt={p.title}
-                      className="w-full h-full object-contain"
-                      width={1200}
-                      height={900}
-                    />
-                  ) : isGauMata ? (
-                    <Image
-                      src="/photos/Monkeys_in_the_Jungle.png"
-                      alt={p.title}
-                      className="w-full h-full object-contain"
-                      width={1200}
-                      height={900}
-                    />
-                  ) : isMagicOfPeacock ? (
-                    <Image
-                      src="/photos/King_of_Forest.png"
-                      alt={p.title}
-                      className="w-full h-full object-contain"
-                      width={1200}
-                      height={900}
-                    />
-                  ) : (
-                    <span className="font-display text-lg italic text-brand-gold" style={{ opacity: 0.2 }}>
-                      [ artwork ]
-                    </span>
-                  )}
-                </div>
-                <div className="p-5">
-                  <h3 className="font-display text-xl text-brand-navy mb-1">{displayPainting.title}</h3>
-                  <p className="font-body text-sm text-brand-orange mb-1">{displayPainting.artist}</p>
-                  <p className="font-body text-xs text-gray-500">{displayPainting.year} · {displayPainting.medium}</p>
-                </div>
-              </motion.div>
-              );
-            })}
-          </motion.div>
-
-        </div>
-      </section>
 
       {/* ═══════════════════════════════════════════════════════
           SECTION 6 — VISION STATEMENT
@@ -1002,205 +695,7 @@ export default function HomePage() {
         </motion.div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════
-          SECTION 7 — NOTABLE RECOGNITION
-      ══════════════════════════════════════════════════════════ */}
-      <section className="bg-brand-cream py-24 px-6 md:px-12">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="text-center mb-14"
-          >
-            <h2 className="font-display text-4xl text-brand-navy">Collected &amp; Celebrated By</h2>
-          </motion.div>
-          <motion.div
-            variants={stagger}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-4"
-          >
-            {collectors.map(({ name, role }) => (
-              <motion.div key={name} variants={item} className="bg-[#173F2D] shadow-sm p-5 flex flex-col gap-1 border border-brand-gold/30">
-                <span className="font-display text-lg text-brand-navy leading-snug">{name}</span>
-                <span className="font-body text-xs text-gray-500">{role}</span>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
 
-      {/* ═══════════════════════════════════════════════════════
-          SECTION 7 — STORY BOARD OF INDIA
-      ══════════════════════════════════════════════════════════ */}
-      <section className="bg-[#143526] py-24 px-6 md:px-12">
-        <div className="max-w-7xl mx-auto">
-
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="text-center mb-16"
-          >
-            <p className="font-body text-xs uppercase tracking-widest text-brand-gold mb-3">
-              Our Heritage
-            </p>
-            <h2 className="font-display text-5xl text-brand-navy mb-4">
-              Story Board of India
-            </h2>
-            <p className="font-body text-sm text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Connectivity for Our Beloved Nation, India
-            </p>
-          </motion.div>
-
-          <motion.div
-            variants={stagger}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="max-w-4xl mx-auto mb-16"
-          >
-            <motion.p
-              variants={item}
-              className="font-body text-gray-700 leading-relaxed mb-5"
-            >
-              In 1962, my father was a Professor of English at G. S. College of Commerce in Wardha, Maharashtra, near Nagpur. Wardha is a sacred and historic place, home to Sevagram Ashram, where Mahatma Gandhi lived and worked. On such a pure and inspiring land, my parents created a beautiful garden of 45 varieties of roses, including rare black and green roses.
-            </motion.p>
-            <motion.p
-              variants={item}
-              className="font-body text-gray-700 leading-relaxed"
-            >
-              Our mother carried water on her head from nearly a quarter kilometre every day, nurturing every plant with love and care. It was in this sacred place that our family&apos;s journey with India&apos;s greatest leaders began — moments that shaped our values and commitment to the nation.
-            </motion.p>
-          </motion.div>
-
-          <motion.div
-            variants={stagger}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 gap-6"
-          >
-            {storyHighlights.map((highlight, idx) => (
-              <motion.div
-                key={idx}
-                variants={item}
-                className="p-6 border-l-4"
-                style={{
-                  borderColor: '#C9A84C',
-                  background: 'rgba(16, 42, 31, 0.6)',
-                }}
-              >
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0">
-                    <span className="inline-block px-3 py-1 text-xs uppercase tracking-widest text-brand-navy bg-brand-gold rounded-full font-bold">
-                      {highlight.year}
-                    </span>
-                  </div>
-                </div>
-                <h4 className="font-display text-xl text-brand-navy mt-4 mb-2">
-                  {highlight.title}
-                </h4>
-                <p className="font-body text-sm text-gray-600 leading-relaxed">
-                  {highlight.description}
-                </p>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.3 }}
-            className="mt-16 p-8 text-center"
-            style={{
-              background: 'rgba(201, 168, 76, 0.08)',
-              border: '1px solid rgba(201,168,76,0.2)',
-            }}
-          >
-            <p className="font-body text-gray-600 text-sm leading-relaxed max-w-2xl mx-auto">
-              Through these encounters and experiences, we have remained committed to contributing to our beloved nation, India. Though financial constraints have at times limited our efforts, the spirit of service, connectivity, and nation-building has always guided our path. Our story is India&apos;s story — a testament to the values that unite us all.
-            </p>
-          </motion.div>
-
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════════════════
-          SECTION 7B — PRESIDENTIAL VISIT TO RASHTRAPATI BHAVAN
-      ══════════════════════════════════════════════════════════ */}
-      <section className="bg-brand-cream py-24 px-6 md:px-12">
-        <div className="max-w-7xl mx-auto">
-
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="text-center mb-16"
-          >
-            <p className="font-body text-xs uppercase tracking-widest text-brand-orange mb-3">
-              Historic Moment
-            </p>
-            <h2 className="font-display text-5xl text-brand-navy mb-4">
-              Rashtrapati Bhavan Visit
-            </h2>
-            <p className="font-body text-sm uppercase tracking-widest text-brand-gold">
-              On occasion of Sharad Purnima — 25th October, 2007
-            </p>
-          </motion.div>
-
-          <motion.div
-            variants={stagger}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-          >
-            {presidentialVisitPhotos.map((photo, idx) => (
-              <motion.div
-                key={idx}
-                variants={item}
-                className="bg-white overflow-hidden transition-shadow duration-300 hover:shadow-lg"
-                style={{ border: '1px solid rgba(214,186,116,0.35)' }}
-              >
-                {/* Image */}
-                <div
-                  className="w-full aspect-[4/3] relative flex items-center justify-center"
-                  style={{
-                    background: '#F5F5F5',
-                    borderBottom: '2px solid rgba(201,168,76,0.25)',
-                  }}
-                >
-                  <Image
-                    src={photo.src}
-                    alt={photo.title}
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="object-contain p-1"
-                  />
-                </div>
-
-                {/* Content */}
-                <div className="p-5">
-                  <h3 className="font-display text-lg text-brand-navy mb-2">
-                    {photo.title}
-                  </h3>
-                  <p className="font-body text-sm text-gray-700 leading-relaxed">
-                    {photo.description}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-
-        </div>
-      </section>
 
       {/* ═══════════════════════════════════════════════════════
           SECTION 7C — TRADEMARKS & BRAND LOGOS
