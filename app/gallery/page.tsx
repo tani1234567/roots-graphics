@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -10,10 +10,8 @@ import { paintings } from '@/data/paintings';
 
 type Painting = (typeof paintings)[number];
 
-const FILTERS = ['All Works', 'M. B. Parag', 'Jayant B. Mairal'] as const;
+const FILTERS = ['M. B. Parag', 'Jayant B. Mairal'] as const;
 const EXCLUDED_TITLES = new Set<string>([]);
-
-type Orientation = 'landscape' | 'portrait' | 'square' | 'unknown';
 
 function getPaintingImageSrc(title: string): string | null {
   if (title === 'Human Relations I') return '/photos/Human_Relations.png';
@@ -47,39 +45,6 @@ function getPaintingImageSrc(title: string): string | null {
   return null;
 }
 
-function useImageOrientation(src: string | null): Orientation {
-  const [orientation, setOrientation] = useState<Orientation>('unknown');
-
-  useEffect(() => {
-    if (!src) {
-      setOrientation('unknown');
-      return;
-    }
-
-    let cancelled = false;
-    const img = new window.Image();
-
-    img.onload = () => {
-      if (cancelled) return;
-      const { naturalWidth, naturalHeight } = img;
-      if (naturalWidth > naturalHeight) setOrientation('landscape');
-      else if (naturalHeight > naturalWidth) setOrientation('portrait');
-      else setOrientation('square');
-    };
-
-    img.onerror = () => {
-      if (!cancelled) setOrientation('unknown');
-    };
-
-    img.src = src;
-
-    return () => {
-      cancelled = true;
-    };
-  }, [src]);
-
-  return orientation;
-}
 
 // ── Variants ───────────────────────────────────────────────────────────────
 
@@ -97,24 +62,12 @@ const cardItem = {
 
 function PaintingCard({
   painting,
-  index,
   onClick,
 }: {
   painting: Painting;
-  index: number;
   onClick: () => void;
 }) {
   const imageSrc = getPaintingImageSrc(painting.title);
-  const orientation = useImageOrientation(imageSrc);
-  const frameAspectClass = imageSrc
-    ? orientation === 'portrait'
-      ? 'aspect-[4/5]'
-      : orientation === 'square'
-        ? 'aspect-square'
-        : 'aspect-[4/3]'
-    : index % 2 === 0
-      ? 'aspect-[4/3]'
-      : 'aspect-[4/5]';
 
   return (
     <motion.div
@@ -126,7 +79,7 @@ function PaintingCard({
     >
       {/* Frame placeholder — alternating aspect ratio for masonry feel */}
       <div
-        className={`w-full ${frameAspectClass} flex items-center justify-center`}
+        className="w-full aspect-[4/3] flex items-center justify-center"
         style={{
           background: imageSrc ? '#FFFFFF' : '#111',
           border: '3px solid #C9A84C',
@@ -175,7 +128,7 @@ function PaintingCard({
 // ── Page ───────────────────────────────────────────────────────────────────
 
 export default function GalleryPage() {
-  const [filter, setFilter] = useState<string>('All Works');
+  const [filter, setFilter] = useState<string>('M. B. Parag');
   const [lightboxId, setLightboxId] = useState<number | null>(null);
   const visiblePaintings = paintings.filter((p) => !EXCLUDED_TITLES.has(p.title));
   const normalizeArtist = (value: string) => value.toLowerCase().replace(/[.\s]/g, '');
@@ -183,10 +136,7 @@ export default function GalleryPage() {
     return normalizeArtist(artist) === normalizeArtist(selected);
   };
 
-  const filtered =
-    filter === 'All Works'
-      ? visiblePaintings
-      : visiblePaintings.filter((p) => matchesFilter(p.artist, filter));
+  const filtered = visiblePaintings.filter((p) => matchesFilter(p.artist, filter));
 
   const lightboxIndex =
     lightboxId !== null ? filtered.findIndex((p) => p.id === lightboxId) : -1;
@@ -295,11 +245,10 @@ export default function GalleryPage() {
               animate="visible"
               className="columns-1 sm:columns-2 lg:columns-3 gap-6"
             >
-              {filtered.map((painting, idx) => (
+              {filtered.map((painting) => (
                 <PaintingCard
                   key={painting.id}
                   painting={painting}
-                  index={idx}
                   onClick={() => setLightboxId(painting.id)}
                 />
               ))}

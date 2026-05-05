@@ -1,10 +1,8 @@
 'use client';
 
-import { useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { motion, useScroll, useTransform, useMotionValue } from 'framer-motion';
-import type { MotionValue } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 
 // ── Variants ───────────────────────────────────────────────────────────────
@@ -235,88 +233,10 @@ const vipMoments = [
 ];
 
 
-// ── Floating artwork cards — hero background layer ─────────────────────────
-// group drives the scroll-parallax direction:
-//   top-left / top / top-right  → scatter upward + outward on scroll
-//   right / left                → scatter sideways
-//   bottom-* / bottom           → scatter downward + outward on scroll
-type ParallaxGroup =
-  | 'top-left' | 'top' | 'top-right'
-  | 'right'
-  | 'bottom-right' | 'bottom' | 'bottom-left'
-  | 'left';
-
-const floatingArtworks: Array<{
-  id: number; title: string; artist: string;
-  top: string; left: string; rotate: number;
-  startX: number; startY: number;
-  delay: number; w: number; h: number; floatDur: number;
-  group: ParallaxGroup;
-}> = [
-  { id: 0,  title: 'Unity',             artist: 'Jayant B. Mairal', top: '6%',  left: '1%',  rotate: -14, startX: -220, startY: -130, delay: 0.15, w: 130, h: 100, floatDur: 3.8, group: 'top-left' },
-  { id: 1,  title: 'Winning Horse With the Owner', artist: 'M.B. Parag', top: '15%', left: '9%',  rotate:   9, startX: -180, startY: -190, delay: 0.32, w: 148, h: 116, floatDur: 4.2, group: 'top-left' },
-  { id: 2,  title: 'Sunrise',           artist: 'M. B. Parag',      top: '2%',  left: '29%', rotate:  -6, startX:    0, startY: -220, delay: 0.20, w: 138, h: 108, floatDur: 3.5, group: 'top' },
-  { id: 3,  title: 'Couple',            artist: 'Jayant B. Mairal', top: '2%',  left: '56%', rotate:   5, startX:    0, startY: -220, delay: 0.42, w: 138, h: 108, floatDur: 4.6, group: 'top' },
-  { id: 4,  title: "Rhinoceros Winner's of the Battle.", artist: 'M.B. Parag', top: '14%', left: '76%', rotate: -10, startX:  180, startY: -190, delay: 0.27, w: 148, h: 116, floatDur: 3.9, group: 'top-right' },
-  { id: 5,  title: 'Narsimha God',      artist: 'M. B. Parag',      top: '5%',  left: '87%', rotate:  13, startX:  220, startY: -130, delay: 0.40, w: 130, h: 100, floatDur: 4.3, group: 'top-right' },
-  { id: 6,  title: 'Magic of Peacock',  artist: 'Jayant B. Mairal', top: '31%', left: '88%', rotate:  -8, startX:  260, startY:    0, delay: 0.55, w: 142, h: 112, floatDur: 4.0, group: 'right' },
-  { id: 7,  title: 'Celebrations in Dense Forest.', artist: 'M.B. Parag',      top: '58%', left: '87%', rotate:  11, startX:  260, startY:    0, delay: 0.70, w: 136, h: 106, floatDur: 3.7, group: 'right' },
-  { id: 8,  title: 'Narsimha God',      artist: 'M. B. Parag',      top: '82%', left: '79%', rotate: -13, startX:  200, startY:  170, delay: 0.37, w: 130, h: 100, floatDur: 4.4, group: 'bottom-right' },
-  { id: 9,  title: 'Unity',             artist: 'Jayant B. Mairal', top: '88%', left: '40%', rotate:   7, startX:    0, startY:  220, delay: 0.60, w: 138, h: 108, floatDur: 3.6, group: 'bottom' },
-  { id: 10, title: 'Couple',            artist: 'Jayant B. Mairal', top: '82%', left: '3%',  rotate:  12, startX: -200, startY:  170, delay: 0.48, w: 130, h: 100, floatDur: 4.1, group: 'bottom-left' },
-  { id: 11, title: 'Sunrise',           artist: 'M. B. Parag',      top: '40%', left: '1%',  rotate:  -7, startX: -260, startY:    0, delay: 0.63, w: 142, h: 112, floatDur: 4.5, group: 'left' },
-  { id: 12, title: 'Magic of Peacock',  artist: 'Jayant B. Mairal', top: '65%', left: '2%',  rotate:  10, startX: -260, startY:    0, delay: 0.80, w: 136, h: 106, floatDur: 3.4, group: 'left' },
-];
-
-const floatingArtworkImages = [
-  '/photos/Green_Forest.png',
-  '/photos/Celebrations_in_Dense_Forest.png',
-  '/photos/Narsimha_God.png',
-  '/photos/Couple.png',
-  '/photos/Monkeys_in_the_Jungle.png',
-  '/photos/Winning_Horse.png',
-  '/photos/Rhinoceros.png',
-  '/photos/King_of_Forest.png',
-  '/photos/Blossoming_Forest.png',
-  "/photos/King's_Kingdom.png",
-  '/photos/Dense_Forest.png',
-  "/photos/Winner's_of_Battle_II.png",
-  "/photos/Winner's_of_Battle_III.png",
-];
 
 // ── Page ───────────────────────────────────────────────────────────────────
 
 export default function HomePage() {
-  const heroRef = useRef<HTMLElement>(null);
-
-  // ── Scroll progress through the hero section (0 = top, 1 = bottom leaving) ──
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ['start start', 'end start'],
-  });
-
-  // ── Per-group scroll parallax transforms ──
-  const topY       = useTransform(scrollYProgress, [0, 1], [0, -110]); // top cards scatter up
-  const botY       = useTransform(scrollYProgress, [0, 1], [0,  110]); // bottom scatter down
-  const midY       = useTransform(scrollYProgress, [0, 1], [0,  -55]); // side cards drift up
-  const leftX      = useTransform(scrollYProgress, [0, 1], [0,  -50]); // left scatter left
-  const rightX     = useTransform(scrollYProgress, [0, 1], [0,   50]); // right scatter right
-  const noX        = useMotionValue(0);                                 // no horizontal drift
-
-  // Overall card layer fades as hero scrolls away
-  const cardsOpacity = useTransform(scrollYProgress, [0, 0.45, 0.85], [1, 0.65, 0]);
-
-  // Map group → { y, x } motion values
-  const parallaxMap: Record<ParallaxGroup, { y: MotionValue<number>; x: MotionValue<number> }> = {
-    'top-left':     { y: topY,  x: leftX  },
-    'top':          { y: topY,  x: noX    },
-    'top-right':    { y: topY,  x: rightX },
-    'right':        { y: midY,  x: rightX },
-    'bottom-right': { y: botY,  x: rightX },
-    'bottom':       { y: botY,  x: noX    },
-    'bottom-left':  { y: botY,  x: leftX  },
-    'left':         { y: midY,  x: leftX  },
-  };
 
   return (
     <motion.div
@@ -330,123 +250,8 @@ export default function HomePage() {
           SECTION 1 — HERO
       ══════════════════════════════════════════════════════════ */}
       <section
-        ref={heroRef}
         className="relative min-h-screen bg-brand-cream flex items-center justify-center overflow-hidden"
       >
-
-        {/* ── Layer A: Floating artwork cards (z-[2], desktop only) ── */}
-        <motion.div
-          className="absolute inset-0 pointer-events-none z-[2] hidden lg:block"
-          style={{ opacity: cardsOpacity }}
-          aria-hidden="true"
-        >
-          {floatingArtworks.map((card) => {
-            const { y: scrollY, x: scrollX } = parallaxMap[card.group];
-            const artworkSrc = floatingArtworkImages[card.id % floatingArtworkImages.length];
-            return (
-              <motion.div
-                key={card.id}
-                className="absolute"
-                style={{ top: card.top, left: card.left, y: scrollY, x: scrollX }}
-              >
-                {/* Entry animation: flies in from edge, rotates to resting angle */}
-                <motion.div
-                  initial={{
-                    opacity: 0,
-                    x: card.startX,
-                    y: card.startY,
-                    rotate: card.rotate * 0.25,
-                  }}
-                  animate={{
-                    opacity: 0.86,
-                    x: 0,
-                    y: 0,
-                    rotate: card.rotate,
-                  }}
-                  transition={{
-                    type: 'spring',
-                    stiffness: 48,
-                    damping: 16,
-                    delay: card.delay,
-                    opacity: { duration: 0.55, ease: 'easeOut', delay: card.delay },
-                  }}
-                >
-                  {/* Continuous gentle float */}
-                  <motion.div
-                    animate={{ y: [-6, 6, -6] }}
-                    transition={{
-                      duration: card.floatDur,
-                      repeat: Infinity,
-                      ease: 'easeInOut',
-                      delay: card.delay + 1.4,
-                    }}
-                  >
-                    {/* Mini painting frame */}
-                    <div
-                      style={{
-                        width: card.w,
-                        height: card.h,
-                        background: 'linear-gradient(145deg, #1d1508 0%, #0e0a04 55%, #16100a 100%)',
-                        border: '2px solid #C9A84C',
-                        boxShadow:
-                          '0 8px 32px rgba(0,0,0,0.55), inset 0 0 24px rgba(0,0,0,0.65), 0 0 0 1px rgba(201,168,76,0.12)',
-                        position: 'relative',
-                        overflow: 'hidden',
-                      }}
-                    >
-                      <div style={{ position: 'absolute', inset: '5px', border: '1px solid rgba(201,168,76,0.2)' }} />
-                      <div
-                        style={{
-                          position: 'absolute',
-                          inset: 0,
-                          background: 'radial-gradient(ellipse at 28% 32%, rgba(201,168,76,0.14) 0%, transparent 62%)',
-                        }}
-                      />
-                      <span className="absolute top-[7px] left-[7px]   block w-[9px] h-[9px] border-t border-l border-[#C9A84C] opacity-55" />
-                      <span className="absolute top-[7px] right-[7px]  block w-[9px] h-[9px] border-t border-r border-[#C9A84C] opacity-55" />
-                      <span className="absolute bottom-[7px] left-[7px]  block w-[9px] h-[9px] border-b border-l border-[#C9A84C] opacity-55" />
-                      <span className="absolute bottom-[7px] right-[7px] block w-[9px] h-[9px] border-b border-r border-[#C9A84C] opacity-55" />
-                      <div className="absolute inset-[6px] overflow-hidden">
-                        <Image
-                          src={artworkSrc}
-                          alt={card.title}
-                          fill
-                          sizes="180px"
-                          className="object-cover"
-                        />
-                      </div>
-                    </div>
-                  </motion.div>
-                </motion.div>
-              </motion.div>
-            );
-          })}
-        </motion.div>
-
-        {/* ── Layer B: Centrepiece frame — z-[4], filled with hero bg so cards hide behind it ── */}
-        <div
-          className="absolute inset-0 z-[4] flex items-center justify-center pointer-events-none"
-          aria-hidden="true"
-        >
-          <motion.div
-            className="relative"
-            animate={{ scale: [1, 1.003, 1], opacity: [0.96, 1, 0.96] }}
-            transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-            style={{
-              width: 'clamp(320px, 64vw, 980px)',
-              height: 'clamp(300px, 56vh, 680px)',
-              background: '#133726',                      /* same as hero bg — masks cards behind */
-              border: '5px solid #C9A84C',
-              boxShadow:
-                'inset 0 0 0 2px #0D0D0D, inset 0 0 0 5px rgba(201,168,76,0.32), 0 0 60px rgba(201,168,76,0.1)',
-            }}
-          >
-            <span className="absolute top-2 left-2   block w-4 h-4 border-t-2 border-l-2 border-brand-gold opacity-60" />
-            <span className="absolute top-2 right-2  block w-4 h-4 border-t-2 border-r-2 border-brand-gold opacity-60" />
-            <span className="absolute bottom-2 left-2  block w-4 h-4 border-b-2 border-l-2 border-brand-gold opacity-60" />
-            <span className="absolute bottom-2 right-2 block w-4 h-4 border-b-2 border-r-2 border-brand-gold opacity-60" />
-          </motion.div>
-        </div>
 
         {/* ── Layer C: Centre spotlight — z-[6] ── */}
         <div
@@ -465,8 +270,22 @@ export default function HomePage() {
           aria-hidden="true"
         />
 
-        {/* ── Layer E: Hero content — z-[10] ── */}
-        <div className="relative z-[10] flex flex-col items-center text-center gap-4 px-8 pt-8 md:pt-10">
+        {/* ── Frame wrapping hero content — z-[10] ── */}
+        <motion.div
+          className="relative z-[10] flex flex-col items-center text-center gap-4 px-10 py-10 md:px-16 md:py-12 mx-6"
+          animate={{ scale: [1, 1.003, 1], opacity: [0.96, 1, 0.96] }}
+          transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+          style={{
+            background: '#133726',
+            border: '5px solid #C9A84C',
+            boxShadow:
+              'inset 0 0 0 2px #0D0D0D, inset 0 0 0 5px rgba(201,168,76,0.32), 0 0 60px rgba(201,168,76,0.1)',
+          }}
+        >
+          <span className="absolute top-2 left-2   block w-4 h-4 border-t-2 border-l-2 border-brand-gold opacity-60" />
+          <span className="absolute top-2 right-2  block w-4 h-4 border-t-2 border-r-2 border-brand-gold opacity-60" />
+          <span className="absolute bottom-2 left-2  block w-4 h-4 border-b-2 border-l-2 border-brand-gold opacity-60" />
+          <span className="absolute bottom-2 right-2 block w-4 h-4 border-b-2 border-r-2 border-brand-gold opacity-60" />
           <motion.p
             variants={fadeUp(0)}
             initial="hidden"
@@ -530,7 +349,7 @@ export default function HomePage() {
               </svg>
             </motion.div>
           </motion.div>
-        </div>
+        </motion.div>
 
       </section>
 
