@@ -7,11 +7,12 @@ import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const homeSections = [
-  { href: '/letters-from-dignitaries', label: 'Letters From Dignitaries & Icons' },
-  { href: '/the-collection',           label: 'The Collection' },
-  { href: '/collected-celebrated',     label: 'Collected & Celebrated By' },
-  { href: '/story-board-of-india',     label: 'Story Board of India' },
-  { href: '/rashtrapati-bhavan-visit', label: 'Rashtrapati Bhavan Visit' },
+  { href: '/moments-with-dignitaries-and-icons', label: 'Moments With Dignitaries & Icons' },
+  { href: '/letters-from-dignitaries',           label: 'Letters From Dignitaries & Icons' },
+  { href: '/the-collection',                     label: 'The Collection' },
+  { href: '/collected-celebrated',               label: 'Collected & Celebrated By' },
+  { href: '/story-board-of-india',               label: 'Story Board of India' },
+  { href: '/rashtrapati-bhavan-visit',           label: 'Rashtrapati Bhavan Visit' },
 ];
 
 const aboutSections = [
@@ -137,7 +138,7 @@ export default function Navbar() {
                       onClick={() => setDropdownOpen(false)}
                       className="font-body text-xs uppercase tracking-widest text-brand-gold hover:text-brand-orange transition-colors duration-200"
                     >
-                      ↑ Back to Home
+                      Go to Home
                     </Link>
                   </li>
                   <li className="mx-4 my-1 h-px bg-[#D6BA74]/40" />
@@ -192,7 +193,7 @@ export default function Navbar() {
                       onClick={() => setAboutDropdown(false)}
                       className="font-body text-xs uppercase tracking-widest text-brand-gold hover:text-brand-orange transition-colors duration-200"
                     >
-                      ↑ Back to About
+                      Go to About page
                     </Link>
                   </li>
                   <li className="mx-4 my-1 h-px bg-[#D6BA74]/40" />
