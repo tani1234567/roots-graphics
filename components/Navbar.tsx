@@ -26,6 +26,105 @@ const navLinks = [
   { href: '/contact', label: 'Contact' },
 ];
 
+interface MobileMenuSectionProps {
+  title: string;
+  isActive: boolean;
+  mainLink: { href: string; label: string };
+  subLinks: { href: string; label: string }[];
+  activePathname: string;
+  onClose: () => void;
+}
+
+function MobileMenuSection({
+  title,
+  isActive,
+  mainLink,
+  subLinks,
+  activePathname,
+  onClose,
+}: MobileMenuSectionProps) {
+  const [expanded, setExpanded] = useState(false);
+
+  return (
+    <>
+      {/* Main link */}
+      <Link
+        href={mainLink.href}
+        onClick={() => {
+          onClose();
+          setExpanded(false);
+        }}
+        className={`flex items-center justify-between px-6 py-4 border-b border-[#D6BA74]/20 transition-colors duration-200 ${
+          isActive ? 'bg-brand-gold/8 text-brand-orange' : 'text-brand-navy hover:bg-[#D6BA74]/5'
+        }`}
+      >
+        <span className={`font-body text-base uppercase tracking-wider font-semibold ${isActive ? 'text-brand-orange' : ''}`}>
+          {title}
+        </span>
+        {subLinks.length > 0 && (
+          <motion.svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            animate={{ rotate: expanded ? 180 : 0 }}
+            transition={{ duration: 0.25 }}
+            className={isActive ? 'text-brand-orange' : 'text-brand-navy'}
+          >
+            <polyline points="6 9 12 15 18 9" />
+          </motion.svg>
+        )}
+      </Link>
+
+      {/* Expandable sub-links */}
+      <AnimatePresence>
+        {expanded && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.25 }}
+            className="overflow-hidden bg-brand-cream/50"
+          >
+            <div className="space-y-0">
+              {subLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={onClose}
+                  className={`block px-6 py-3 pl-10 font-body text-sm uppercase tracking-wider transition-colors duration-150 border-b border-[#D6BA74]/10 ${
+                    activePathname === link.href
+                      ? 'text-brand-orange bg-brand-gold/5 font-semibold'
+                      : 'text-brand-navy hover:bg-brand-gold/3'
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Toggle for expandable sections */}
+      {subLinks.length > 0 && !expanded && (
+        <motion.button
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          onClick={() => setExpanded(true)}
+          className="w-full px-6 py-2 text-xs font-body text-brand-gold/60 hover:text-brand-gold transition-colors duration-200 border-b border-[#D6BA74]/10"
+        >
+          View submenu
+        </motion.button>
+      )}
+    </>
+  );
+}
+
 export default function Navbar() {
   const [menuOpen, setMenuOpen]               = useState(false);
   const [dropdownOpen, setDropdownOpen]       = useState(false);
@@ -255,112 +354,85 @@ export default function Navbar() {
         {menuOpen && (
           <motion.div
             key="mobile-menu"
-            initial={{ opacity: 0, y: -24 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -24 }}
-            transition={{ duration: 0.35, ease: 'easeOut' }}
-            className="fixed inset-0 z-[100] bg-brand-cream flex flex-col items-center justify-center overflow-y-auto py-16"
+            initial={{ opacity: 0, x: -100 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -100 }}
+            transition={{ duration: 0.3, ease: 'easeOut' }}
+            className="fixed inset-0 z-[100] bg-brand-cream flex flex-col overflow-hidden"
           >
-            <button
-              className="absolute top-6 right-6 text-brand-navy text-4xl leading-none hover:text-brand-orange transition-colors duration-300"
-              onClick={() => setMenuOpen(false)}
-              aria-label="Close menu"
-            >
-              &times;
-            </button>
-
-            <div
-              className="w-[100px] h-[100px] rounded-full p-3 mb-8 shadow-[0_2px_12px_rgba(0,0,0,0.18)] ring-1 ring-[#D6BA74]/60 flex items-center justify-center"
-              style={{ backgroundColor: '#FFFFFF' }}
-            >
-              <Image
-                src="/photos/root-graphics-logo.png"
-                alt="Roots Graphics logo"
-                width={80}
-                height={80}
-                className="w-[72%] h-[72%] object-contain"
-              />
+            {/* Header */}
+            <div className="sticky top-0 z-10 bg-brand-cream border-b border-[#D6BA74]/20 px-6 py-4 flex items-center justify-between">
+              <div className="w-10 h-10 flex items-center justify-center">
+                <Image
+                  src="/photos/root-graphics-logo.png"
+                  alt="Roots Graphics"
+                  width={32}
+                  height={32}
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              <button
+                onClick={() => setMenuOpen(false)}
+                className="p-2 hover:text-brand-orange transition-colors duration-200"
+                aria-label="Close menu"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-brand-navy">
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+              </button>
             </div>
 
-            <ul className="flex flex-col items-center gap-8 w-full px-8">
-              {/* Home link */}
-              <li className="text-center">
-                <Link
-                  href="/"
-                  onClick={() => setMenuOpen(false)}
-                  className={`font-display text-5xl uppercase tracking-[0.15em] transition-colors duration-300 ${
-                    isHome ? 'text-brand-orange' : 'text-brand-navy hover:text-brand-orange'
-                  }`}
-                >
-                  Home
-                </Link>
-                {/* Section sub-links */}
-                <ul className="mt-4 flex flex-col items-center gap-3">
-                  {homeSections.map((s) => (
-                    <li key={s.href}>
-                      <Link
-                        href={s.href}
-                        onClick={() => setMenuOpen(false)}
-                        className={`font-body text-sm uppercase tracking-widest transition-colors duration-200 ${
-                          pathname === s.href ? 'text-brand-orange' : 'text-brand-navy hover:text-brand-orange'
-                        }`}
-                      >
-                        {s.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </li>
+            {/* Navigation */}
+            <nav className="flex-1 overflow-y-auto">
+              <div className="border-b border-[#D6BA74]/20">
+                <MobileMenuSection
+                  title="Home"
+                  isActive={isHome}
+                  mainLink={{ href: '/', label: 'Home' }}
+                  subLinks={homeSections}
+                  activePathname={pathname}
+                  onClose={() => setMenuOpen(false)}
+                />
+              </div>
 
-              <li className="w-24 h-px bg-[#D6BA74]/50" />
+              <div className="border-b border-[#D6BA74]/20">
+                <MobileMenuSection
+                  title="About"
+                  isActive={isAbout}
+                  mainLink={{ href: '/about', label: 'About' }}
+                  subLinks={aboutSections}
+                  activePathname={pathname}
+                  onClose={() => setMenuOpen(false)}
+                />
+              </div>
 
-              {/* About link */}
-              <li className="text-center">
-                <Link
-                  href="/about"
-                  onClick={() => setMenuOpen(false)}
-                  className={`font-display text-5xl uppercase tracking-[0.15em] transition-colors duration-300 ${
-                    isAbout ? 'text-brand-orange' : 'text-brand-navy hover:text-brand-orange'
-                  }`}
-                >
-                  About
-                </Link>
-                <ul className="mt-4 flex flex-col items-center gap-3">
-                  {aboutSections.map((s) => (
-                    <li key={s.href}>
-                      <Link
-                        href={s.href}
-                        onClick={() => setMenuOpen(false)}
-                        className={`font-body text-sm uppercase tracking-widest transition-colors duration-200 ${
-                          pathname === s.href ? 'text-brand-orange' : 'text-brand-navy hover:text-brand-orange'
-                        }`}
-                      >
-                        {s.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </li>
-
-              <li className="w-24 h-px bg-[#D6BA74]/50" />
-
+              {/* Other Links */}
               {navLinks.map(({ href, label }) => {
                 const isActive = isActiveRoute(href);
                 return (
-                  <li key={href}>
-                    <Link
-                      href={href}
-                      onClick={() => setMenuOpen(false)}
-                      className={`font-display text-5xl uppercase tracking-[0.15em] transition-colors duration-300 ${
-                        isActive ? 'text-brand-orange' : 'text-brand-navy hover:text-brand-orange'
-                      }`}
-                    >
-                      {label}
-                    </Link>
-                  </li>
+                  <Link
+                    key={href}
+                    href={href}
+                    onClick={() => setMenuOpen(false)}
+                    className={`block px-6 py-4 font-body text-base uppercase tracking-wider border-b border-[#D6BA74]/20 transition-colors duration-200 ${
+                      isActive
+                        ? 'text-brand-orange bg-brand-gold/8 font-semibold'
+                        : 'text-brand-navy hover:bg-brand-gold/5'
+                    }`}
+                  >
+                    {label}
+                  </Link>
                 );
               })}
-            </ul>
+            </nav>
+
+            {/* Footer */}
+            <div className="border-t border-[#D6BA74]/20 px-6 py-6 bg-brand-cream">
+              <p className="font-body text-xs uppercase tracking-widest text-brand-gold text-center">
+                Established 1990 · Mumbai
+              </p>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
