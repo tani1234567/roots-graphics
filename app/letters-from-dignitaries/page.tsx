@@ -147,7 +147,7 @@ export default function LettersFromDignitariesPage() {
                 Critical Appreciation
               </h2>
               <p className="font-body text-sm uppercase tracking-widest text-brand-gold">
-                Expert Commentary on the Artist's Vision and Legacy
+                Expert Commentary on the Artist&apos;s Vision and Legacy
               </p>
             </motion.div>
 
@@ -175,7 +175,7 @@ export default function LettersFromDignitariesPage() {
                   className="mb-8"
                 >
                   <blockquote className="font-display text-2xl md:text-3xl text-brand-navy italic leading-relaxed">
-                    "I paint objects as I think them, not as I see them."
+                    &ldquo;I paint objects as I think them, not as I see them.&rdquo;
                   </blockquote>
                   <p className="font-body text-sm text-gray-600 mt-2">
                     — Pablo Picasso
