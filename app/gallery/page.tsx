@@ -42,6 +42,7 @@ function getPaintingImageSrc(title: string): string | null {
   if (title === "King's Kingdom") return "/photos/King's_Kingdom.png";
   if (title === 'Clouds & Rains & Happiness & Celebrations') return '/photos/Clouds_&_Rains.png';
   if (title === 'Blossoming Forest') return '/photos/Blossoming_Forest.png';
+  if (title === 'Softness of Piousity and Purity Forming Almighty God II') return '/photos/Purity Forming Almighty God II.png';
   return null;
 }
 

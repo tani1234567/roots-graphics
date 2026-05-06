@@ -83,7 +83,7 @@ export const paintings = [
   {
     id: 10,
     title: 'Green Forest',
-    artist: 'M.B. Parag',
+    artist: 'M. B. Parag',
     year: 2023,
     medium: 'Acrylic On Canvas',
     size: "5' x 7' Feet",
@@ -93,7 +93,7 @@ export const paintings = [
   {
     id: 11,
     title: "Sensation with Sensitivity I - Winner's of Battle I",
-    artist: 'M.B. Parag',
+    artist: 'M. B. Parag',
     year: 2004,
     medium: 'Acrylic on Canvas',
     size: '36" x 30" inches.',
@@ -102,7 +102,7 @@ export const paintings = [
   {
     id: 12,
     title: "Sensation with Sensitivity II- Winner's of Battle II",
-    artist: 'M.B. Parag',
+    artist: 'M. B. Parag',
     year: 2004,
     medium: 'Acrylic on Canvas',
     size: '30" x 36" inches.',
@@ -111,7 +111,7 @@ export const paintings = [
   {
     id: 13,
     title: "Sensation with Sensitivity III - Winner's of Battle III",
-    artist: 'M.B. Parag',
+    artist: 'M. B. Parag',
     year: 2004,
     medium: 'Acrylic on Canvas',
     size: '36" x 30" inches.',
@@ -192,7 +192,7 @@ export const paintings = [
   {
     id: 22,
     title: 'Winning Horse With the Owner',
-    artist: 'M.B. Parag',
+    artist: 'M. B. Parag',
     year: 2023,
     medium: 'Acrylic on Canvas',
     size: '78" x 21" inches',
@@ -201,7 +201,7 @@ export const paintings = [
   {
     id: 23,
     title: 'Monkeys in the Jungle - Forest',
-    artist: 'M.B. Parag',
+    artist: 'M. B. Parag',
     year: 2023,
     medium: 'Acrylic on Canvas',
     size: '78" x 21" inches',
@@ -251,5 +251,14 @@ export const paintings = [
     medium: 'Acrylic on Canvas.',
     size: '24" x 24" inches.',
     description: 'Dated: 18th December, 2023.',
+  },
+  {
+    id: 29,
+    title: 'Softness of Piousity and Purity Forming Almighty God II',
+    artist: 'M. B. Parag',
+    year: 2023,
+    medium: 'Acrylic on Canvas',
+    size: '36" x 72" inches.',
+    description: 'Dated: 2nd October 2023.',
   },
 ];
